@@ -27,7 +27,7 @@ public class Server extends Thread{
             oos.writeObject(protocol.processStage(null));
             while((fromUser = ois.readObject()) != null){
                 oos.writeObject(protocol.processStage(fromUser));
-                //FÖR DEBUGGING:
+                // FÖR DEBUGGING:
                 System.out.println("Sent: " + fromUser);
             }
 
