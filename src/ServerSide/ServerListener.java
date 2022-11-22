@@ -6,6 +6,7 @@ import java.net.Socket;
 
 public class ServerListener {
 
+    static Game game;
     int port = 12345;
 
     public ServerListener() throws IOException {
@@ -23,7 +24,7 @@ public class ServerListener {
                     ServerSidePlayer playerTwo = new ServerSidePlayer(socketToClient);
                     playerTwo.start();
 
-                    Game game = new Game(playerOne, playerTwo);
+                    game = new Game(playerOne, playerTwo);
                     game.initPlayerOneFirstRound();
                     //playerOne.protocolNextStage();
                     //playerOne.oos.writeObject(playerOne.protocol.processStage(null));

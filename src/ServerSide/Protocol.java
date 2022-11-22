@@ -2,6 +2,7 @@ package ServerSide;
 
 import Resources.QuestionsWithAnswers;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class Protocol {
         return this.currentState;
     }
 
-    public Object processStage(Object inputFromServer){
+    public Object processStage(Object inputFromServer) throws IOException {
         if (currentState == state.INIT) {
             currentState = state.SEND_QUESTION;
             return new Initiator();
@@ -58,6 +59,9 @@ public class Protocol {
             System.out.println(question.getIndexOfCorrectAnswer());
             if(questionsAnswered == amountOfQuestionsPerCategory){
                 currentState = state.WAIT;
+                ServerListener.game.swapCurrentPlayer();
+                //ServerListener.game.playerOne.protocol.setCurrentState(state.SEND_QUESTION);
+                //ServerListener.game.playerOne.protocolNextStage();
             }
             return question.getIndexOfCorrectAnswer();
 //            boolean isCorrect = dao.validateAnswer(currentQuestion, answerIndex, currentCategory);
