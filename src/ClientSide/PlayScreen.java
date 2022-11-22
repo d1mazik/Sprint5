@@ -67,6 +67,8 @@ public class PlayScreen implements ActionListener {
             button.setBackground(Color.decode("#8D9EFF"));
             button.addActionListener(this);
         }
+        nextQuestionButton.addActionListener(this);
+        nextQuestionButton.setVisible(false);
 
         //southMainPanel.add(answerButtonOne);
         //answerButtonOne.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -119,6 +121,11 @@ public class PlayScreen implements ActionListener {
         int selectedAnswerIndex = getSelectedAnswerIndex((JButton) e.getSource());
         System.out.println("Selected Answer: " + selectedAnswerIndex);
         buttons.get(selectedAnswerIndex).setBackground(Color.red);
+        nextQuestionButton.setVisible(true);
+
+        for (JButton button : buttons){
+            button.setEnabled(false);
+        }
 
         try {
             Client.oos.writeObject(selectedAnswerIndex);

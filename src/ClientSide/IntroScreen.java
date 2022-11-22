@@ -12,18 +12,17 @@ public class IntroScreen {
 
     public IntroScreen() {
 
-        Container cp = this.getContentPane();
+        introBasePanel.add(introTitelLabel, BorderLayout.NORTH);
+        introBasePanel.add(introTextLabel, BorderLayout.CENTER);
+        //Nedan fungerar inte
+        introBasePanel.setBackground(Color.decode("#8D9EFF"));
 
 
-        this.add(introTitelLabel, BorderLayout.NORTH);
-        this.add(introTextLabel, BorderLayout.CENTER);
-        setBackground(Color.decode("#8D9EFF"));
-
-        this.setVisible(true);
-        this.setSize(800, 840);
+        /*        introBasePanel.setVisible(true);
+        introBasePanel.setSize(800, 840);
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setTitle("QuizKampen");
+        this.setTitle("QuizKampen");*/
 
     }
 
@@ -32,7 +31,8 @@ public class IntroScreen {
     }
     }
 
-    public static void main(String[] args) {
-        IntroScreen is = new IntroScreen();
-    }
-}
+// Main metoden existerar bara för debugging. Ta bort vid implementering
+//    public static void main(String[] args) {
+//        IntroScreen is = new IntroScreen();
+//    }
+//}
