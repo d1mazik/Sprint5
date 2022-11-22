@@ -42,10 +42,7 @@ public class PlayScreen implements ActionListener {
     }
 
     public PlayScreen(QuestionsWithAnswers question) {
-
-//        Container cp = this.getContentPane();
-
-        setLayout(new GridLayout(2, 0));
+        playScreen.setLayout(new GridLayout(2, 0));
 
         playScreen.add(northMainPanel);
         playScreen.add(southMainPanel);
@@ -95,7 +92,7 @@ public class PlayScreen implements ActionListener {
         answerButtonFour.setText(alternatives[3]);
     }
 
-    public int getSelectedAnswerIndex(JButton selectedButton){
+    public int getSelectedAnswerIndex(JButton selectedButton) {
         for (int i = 0; i < buttons.size(); i++) {
             if (buttons.get(i).equals(selectedButton)) {
                 return i;
@@ -103,7 +100,6 @@ public class PlayScreen implements ActionListener {
         }
         return -1;
     }
-
 
 
     @Override
