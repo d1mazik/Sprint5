@@ -16,7 +16,7 @@ public class Protocol {
     }
 
     //Bind till properties
-    int numberofRounds;
+    int numberOfRounds;
     int roundCounter;
     int currentQuestion;
     // bind till action performed så att klienten skickar vilken kategori det ska vara.

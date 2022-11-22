@@ -9,15 +9,12 @@ public class ServerListener {
     int port = 12345;
 
     public ServerListener() throws IOException {
-
-
             try (
                     ServerSocket serverSocket = new ServerSocket(port);
             )
             {
                 while(true) {
                     Socket socketToClient = serverSocket.accept();
-
                     Server server = new Server(socketToClient);
                     server.start();
             }
