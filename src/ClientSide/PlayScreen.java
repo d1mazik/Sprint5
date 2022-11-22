@@ -1,6 +1,7 @@
 package ClientSide;
 
 import Resources.QuestionsWithAnswers;
+import ServerSide.Response;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlayScreen extends JFrame implements ActionListener {
-
     //Main panels
     JPanel northMainPanel = new JPanel();
     JPanel southMainPanel = new JPanel();
@@ -109,6 +109,16 @@ public class PlayScreen extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(nextQuestionButton)) {
+            //Lägg till funktionalitet för att den INTE ska kunna gå att trycka på innan man har svarat på frågan.
+            try {
+                Client.oos.writeObject(new Response());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            return;
+        }
+
         int selectedAnswerIndex = getSelectedAnswerIndex((JButton) e.getSource());
         System.out.println("Selected Answer: " + selectedAnswerIndex);
         buttons.get(selectedAnswerIndex).setBackground(Color.red);
