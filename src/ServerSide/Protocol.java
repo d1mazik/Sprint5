@@ -8,24 +8,33 @@ import java.util.List;
 
 public class Protocol {
     //Protocolklassen kommer att användas för att hantera logiken i spelet och dela in det i olika sekvenser.
-    private enum state{
+    enum state{
         // waiting ansvarar för att connection upprättas mellan två spelare INNAN spelet påbörjas
         INIT,
         SEND_QUESTION,
+        WAIT,
         VALIDATE_ANSWER,
+
     }
 
     //Bind till properties
     int numberOfRounds;
     int roundCounter;
-    int currentQuestion;
+    int questionsAnswered;
     // bind till action performed så att klienten skickar vilken kategori det ska vara.
+    int amountOfQuestionsPerCategory = 2;
     String currentCategory = "vehicleQuestions";
 
     //TODO: SKAPA
     DAO dao = new DAO();
 
     private state currentState = state.INIT;
+    public void setCurrentState(state state) {
+        this.currentState = state;
+    }
+    public state getCurrentState() {
+        return this.currentState;
+    }
 
     public Object processStage(Object inputFromServer){
         if (currentState == state.INIT) {
@@ -33,16 +42,23 @@ public class Protocol {
             return new Initiator();
            // displayEnterNamePrompt(inputFromServer);
         }
+        if (currentState == state.WAIT) {
+            //Gör inget
+            return "wait";
+        }
         if (currentState == state.SEND_QUESTION) {
             currentState = state.VALIDATE_ANSWER;
-            return dao.getQuestion(currentQuestion, currentCategory);
+            return dao.getQuestion(questionsAnswered, currentCategory);
         }
         if (currentState == state.VALIDATE_ANSWER) {
             currentState = state.SEND_QUESTION;
             int answerIndex = (Integer)inputFromServer;
-            QuestionsWithAnswers question = (QuestionsWithAnswers) dao.getQuestion(currentQuestion, "vehicleQuestions");
-            currentQuestion++;
+            QuestionsWithAnswers question = (QuestionsWithAnswers) dao.getQuestion(questionsAnswered, "vehicleQuestions");
+            questionsAnswered++;
             System.out.println(question.getIndexOfCorrectAnswer());
+            if(questionsAnswered == amountOfQuestionsPerCategory){
+                currentState = state.WAIT;
+            }
             return question.getIndexOfCorrectAnswer();
 //            boolean isCorrect = dao.validateAnswer(currentQuestion, answerIndex, currentCategory);
 //            System.out.println(isCorrect);

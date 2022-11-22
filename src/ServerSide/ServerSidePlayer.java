@@ -5,12 +5,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Server extends Thread{
+public class ServerSidePlayer extends Thread{
 
     int port = 12345;
     Socket socketToClient;
     Protocol protocol = new Protocol();
-    public Server(Socket socketToClient){
+    public ServerSidePlayer(Socket socketToClient){
         this.socketToClient = socketToClient;
     }
 

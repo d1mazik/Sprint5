@@ -1,8 +1,10 @@
 package ServerSide;
 
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 public class Game {
+
         DAO dao = new DAO();
         Protocol playerOne, PlayerTwo;
         Protocol currentPlayer;
@@ -26,4 +28,6 @@ public class Game {
 
         }
 
+        public void addPlayer(ServerSidePlayer playerOne) {
+        }
 }
