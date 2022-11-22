@@ -48,12 +48,13 @@ public static ObjectOutputStream oos;
                 if (fromServer instanceof Initiator){
                     IntroScreen introScreen = new IntroScreen();
                     gui.setCurrentPanel(introScreen.getIntroScreen());
-                    oos.writeObject(new Response());
                 } else if (fromServer instanceof QuestionsWithAnswers question) {
                     playScreen = new PlayScreen(question);
                     gui.setCurrentPanel(playScreen.getPlayScreen());
                 } else if (fromServer instanceof Integer correctAnswerIndex) {
                     playScreen.revealAnswer(correctAnswerIndex);
+                } else if(fromServer instanceof String string && string.equals("wait")) {
+                    gui.setCurrentPanel(new WaitScreen().getWaitScreen());
                 }
             }
         } catch (UnknownHostException e) {
