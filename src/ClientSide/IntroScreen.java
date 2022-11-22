@@ -3,10 +3,10 @@ package ClientSide;
 import javax.swing.*;
 import java.awt.*;
 
-public class IntroScreen extends JFrame {
+public class IntroScreen {
 
     //INTROSCREEN
-//    JPanel introBasePanel = new JPanel();
+    JPanel introBasePanel = new JPanel();
     JLabel introTitelLabel = new JLabel("Quizkampen",SwingConstants.CENTER);
     JLabel introTextLabel = new JLabel("Waiting for another player to connect...",SwingConstants.CENTER);
 
@@ -25,6 +25,11 @@ public class IntroScreen extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("QuizKampen");
 
+    }
+
+    public JPanel getIntroScreen() {
+        return introBasePanel;
+    }
     }
 
     public static void main(String[] args) {

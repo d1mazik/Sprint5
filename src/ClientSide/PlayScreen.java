@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class PlayScreen extends JFrame implements ActionListener {
+public class PlayScreen implements ActionListener {
+    JPanel playScreen = new JPanel();
     //Main panels
     JPanel northMainPanel = new JPanel();
     JPanel southMainPanel = new JPanel();
@@ -36,14 +37,18 @@ public class PlayScreen extends JFrame implements ActionListener {
 
     List<JButton> buttons = Arrays.asList(answerButtonOne, answerButtonTwo, answerButtonThree, answerButtonFour);
 
+    public JPanel getPlayScreen() {
+        return playScreen;
+    }
+
     public PlayScreen(QuestionsWithAnswers question) {
 
 //        Container cp = this.getContentPane();
 
         setLayout(new GridLayout(2, 0));
 
-        add(northMainPanel);
-        add(southMainPanel);
+        playScreen.add(northMainPanel);
+        playScreen.add(southMainPanel);
         southMainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         northMainPanel.setLayout(new GridLayout(4, 0));
@@ -75,14 +80,6 @@ public class PlayScreen extends JFrame implements ActionListener {
         //southMainPanel.add(answerButtonFour);
         //answerButtonFour.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         //answerButtonFour.setBackground(Color.decode("#8D9EFF"));
-
-
-        this.setVisible(true);
-        this.setSize(800, 839);
-        setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setTitle("QuizKampen");
-
         loadQuestion(question);
     }
 
