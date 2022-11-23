@@ -49,6 +49,7 @@ public class PlayScreen implements ActionListener {
         playScreen.add(northMainPanel);
         playScreen.add(southMainPanel);
         southMainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        southMainPanel.setOpaque(true);
 
         northMainPanel.setLayout(new GridLayout(4, 0));
         northMainPanel.add(scoreCounterPanel);
@@ -64,6 +65,7 @@ public class PlayScreen implements ActionListener {
             southMainPanel.add(button);
             button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             button.setBackground(Color.decode("#8D9EFF"));
+            button.setOpaque(true);//för att kunna se färgen(Mac)
             button.addActionListener(this);
         }
         nextQuestionButton.addActionListener(this);
@@ -119,6 +121,7 @@ public class PlayScreen implements ActionListener {
         int selectedAnswerIndex = getSelectedAnswerIndex((JButton) e.getSource());
         System.out.println("Selected Answer: " + selectedAnswerIndex);
         buttons.get(selectedAnswerIndex).setBackground(Color.red);
+        buttons.get(selectedAnswerIndex).setOpaque(true);//för att kunna se färger(Mac)
         nextQuestionButton.setVisible(true);
 
         for (JButton button : buttons){
@@ -133,6 +136,8 @@ public class PlayScreen implements ActionListener {
     }
 
     public void revealAnswer(int answerIndex) {
+
         buttons.get(answerIndex).setBackground(Color.green);
+        buttons.get(answerIndex).setOpaque(true);//för att kunna se färgen(Mac)
     }
 }

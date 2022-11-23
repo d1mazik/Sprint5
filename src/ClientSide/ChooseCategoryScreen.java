@@ -38,6 +38,7 @@ public class ChooseCategoryScreen implements ActionListener {
             button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             button.setBackground(Color.decode("#8D9EFF"));
             button.addActionListener(this);
+            button.setOpaque(true); //för att kunna se färg(Mac)
         }
 
         this.categories = categories;
@@ -86,6 +87,7 @@ public class ChooseCategoryScreen implements ActionListener {
             if (buttonSelected.getText().equals(categories[i].getName())) {
                 chosenCategory = categories[i];
                 buttonSelected.setBackground(Color.blue);
+                buttonSelected.setOpaque(true); // för att kunna se färgen(Mac)
             }
             categoryButtons.get(i).setEnabled(false);
         }

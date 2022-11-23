@@ -16,6 +16,7 @@ public class WaitScreen {
         waitBasePanel.add(waitTextLabel, BorderLayout.CENTER);
         //Nedan fungerar inte
         waitBasePanel.setBackground(Color.decode("#8D9EFF"));
+        waitBasePanel.setOpaque(true);
 
 
         /*        introBasePanel.setVisible(true);

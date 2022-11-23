@@ -36,15 +36,19 @@ public class EndOfGameScreen {
         JLabel centerRightLabel = new JLabel("Player Two: " + playerTwoScore);
 
         endOfGameBasePanel.setBackground(Color.decode("#8D9EFF"));
+        endOfGameBasePanel.setOpaque(true);
 
         endOfGameBasePanel.add(northPanel);
         northPanel.setLayout(new GridBagLayout());
         northPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        northPanel.setOpaque(true);
         northPanel.add(northLabel);
         endOfGameBasePanel.add(centerPanel);
         centerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        centerPanel.setOpaque(true);
         centerPanel.add(centerLeftPanel);
         centerLeftPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        centerLeftPanel.setOpaque(true);
         centerLeftPanel.setLayout(new GridBagLayout());
         centerPanel.add(centerRightPanel);
         centerLeftPanel.add(centerLeftLabel);
@@ -54,6 +58,7 @@ public class EndOfGameScreen {
         endOfGameBasePanel.add(southPanel);
         southPanel.add(southLabel);
         southPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        southPanel.setOpaque(true);
         southPanel.setLayout(new GridBagLayout());
 
 

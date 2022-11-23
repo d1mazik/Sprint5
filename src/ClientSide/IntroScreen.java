@@ -16,6 +16,7 @@ public class IntroScreen {
         introBasePanel.add(introTextLabel, BorderLayout.CENTER);
         //Nedan fungerar inte
         introBasePanel.setBackground(Color.decode("#8D9EFF"));
+        introBasePanel.setOpaque(true);//för att kunna se färgen(Mac)
 
 
         /*        introBasePanel.setVisible(true);
