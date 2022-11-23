@@ -1,6 +1,7 @@
 package ClientSide;
 
 import Resources.QuestionsWithAnswers;
+import ServerSide.Category;
 import ServerSide.Response;
 
 import javax.swing.*;
@@ -20,11 +21,10 @@ public class ChooseCategoryScreen implements ActionListener {
     JButton categoryOne = new JButton("Category 1");
     JButton categoryTwo = new JButton("Category 2");
     JButton categoryThree = new JButton("Category 3");
-    //    JButton categoryFour = new JButton("Category 4");
     List<JButton> categoryButtons = Arrays.asList(categoryOne, categoryTwo, categoryThree);
 
     //TODO: Implementera getCategoriesfunktion i QuestionsWithAnswers och ordna i DAO
-    public ChooseCategoryScreen(QuestionsWithAnswers categories) {
+    public ChooseCategoryScreen(Category[] categories) {
         categoryScreen.setLayout(new GridLayout(5, 0));
 
         categoryScreen.add(pickCategoryPrompt);
@@ -47,13 +47,56 @@ public class ChooseCategoryScreen implements ActionListener {
         return categoryScreen;
     }
 
-    public void loadCategories(QuestionsWithAnswers question) {
+    public void loadCategories(Category[] categories) {
+
+        for (int i = 0; i < categories.length; i++) {
+            categoryButtons.get(i).setText(categories[i].getName());
+        }
+
+
+
+//        questionLabel.setText(question.getQuestion());
+//        String[] alternatives = question.getAnswerAlternatives();
+//
+//        answerButtonOne.setText(alternatives[0]);
+//        answerButtonTwo.setText(alternatives[1]);
+//        answerButtonThree.setText(alternatives[2]);
+//        answerButtonFour.setText(alternatives[3]);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == categoryButtons){
 
+        }
     }
+
+    /*    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(nextQuestionButton)) {
+            //Lägg till funktionalitet för att den INTE ska kunna gå att trycka på innan man har svarat på frågan.
+            try {
+                Client.oos.writeObject(new Response());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            return;
+        }
+
+        int selectedAnswerIndex = getSelectedAnswerIndex((JButton) e.getSource());
+        System.out.println("Selected Answer: " + selectedAnswerIndex);
+        buttons.get(selectedAnswerIndex).setBackground(Color.red);
+        nextQuestionButton.setVisible(true);
+
+        for (JButton button : buttons){
+            button.setEnabled(false);
+        }
+
+        try {
+            Client.oos.writeObject(selectedAnswerIndex);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }*/
 
 }

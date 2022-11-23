@@ -2,10 +2,17 @@ package ServerSide;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Game {
 
     DAO dao = new DAO();
+
+    List<Category> categories = dao.categories;
+    Category animalPackageOne = dao.getPackage(1);
+    Category vehiclePackageOne = dao.getPackage(0);
     ServerSidePlayer playerOne, playerTwo;
     ServerSidePlayer currentPlayer;
 
@@ -32,6 +39,23 @@ public class Game {
 
     public void setCurrentPlayer(ServerSidePlayer currentPlayer) {
         this.currentPlayer = currentPlayer;
+    }
+
+    public Category getAnimalPackage(){
+        return animalPackageOne;
+    }
+
+    public Category getVehiclePackageOne(){
+        return vehiclePackageOne;
+    }
+
+    public Category[] getShuffledCategoriesArray(int size){
+        Collections.shuffle(categories);
+        Category[] shuffledCategories = new Category[size];
+        for (int i = 0; i < size; i++) {
+            shuffledCategories[i] = categories.get(i);
+        }
+        return shuffledCategories;
     }
 
     public void setCurrentRound(){

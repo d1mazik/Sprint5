@@ -16,6 +16,11 @@ public class DAO {
 
     List<QuestionsWithAnswers> foodQuestions = new ArrayList<>();
 
+    Category animalPackageOne;
+    Category vehiclePackageOne;
+    Category geographyPackageOne;
+    Category foodPackageOne;
+
 
 
     //TODO: Implementera
@@ -32,6 +37,7 @@ public class DAO {
         String[] animalOne = {"Bondkatt", "Norsk skogskatt", "Råttor", "Siamesiska kattråttor"};
         question = new QuestionsWithAnswers("Vilken är den vanligaste kattrasen?", animalOne,0);
         this.animalQuestions.add(question);
+
 
         String[] alternatives4 = {"quack quack","muuuuu","voff voff", "vrooooom"};
         question = new QuestionsWithAnswers("Hur låter en ko?",alternatives4,1);

@@ -12,6 +12,8 @@ public class Protocol {
     enum state{
         // waiting ansvarar för att connection upprättas mellan två spelare INNAN spelet påbörjas
         INIT,
+
+        CHOOSE_CATEGORY,
         SEND_QUESTION,
         WAIT,
         VALIDATE_ANSWER,
@@ -24,7 +26,7 @@ public class Protocol {
     int questionsAnswered;
     // bind till action performed så att klienten skickar vilken kategori det ska vara.
     int amountOfQuestionsPerCategory = 2;
-    String currentCategory = "vehicleQuestions";
+    String currentCategory; // = "vehicleQuestions";
 
     //TODO: SKAPA
     DAO dao = new DAO();

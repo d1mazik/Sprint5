@@ -1,6 +1,7 @@
 package ClientSide;
 
 import Resources.QuestionsWithAnswers;
+import ServerSide.Category;
 import ServerSide.Initiator;
 import ServerSide.Response;
 
@@ -8,6 +9,7 @@ import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.List;
 
 public class Client extends JFrame {
 
@@ -48,7 +50,9 @@ public static ObjectOutputStream oos;
                 if (fromServer instanceof Initiator){
                     introScreen = new IntroScreen();
                     gui.setCurrentPanel(introScreen.getIntroScreen());
-                } else if (fromServer instanceof QuestionsWithAnswers question) {
+                } else if (fromServer instanceof Category[] categories) {
+                    gui.setCurrentPanel(new ChooseCategoryScreen(categories).getCategoryScreen());
+                }else if (fromServer instanceof QuestionsWithAnswers question) {
                     playScreen = new PlayScreen(question);
                     gui.setCurrentPanel(playScreen.getPlayScreen());
                 } else if (fromServer instanceof Integer correctAnswerIndex) {
