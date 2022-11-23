@@ -2,9 +2,10 @@ package ServerSide;
 
 import Resources.QuestionsWithAnswers;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Category {
+public class Category implements Serializable {
 
     String name;
     List<QuestionsWithAnswers> questionPackage;

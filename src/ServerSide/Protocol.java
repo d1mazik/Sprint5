@@ -26,7 +26,7 @@ public class Protocol {
     int questionsAnswered;
     // bind till action performed så att klienten skickar vilken kategori det ska vara.
     int amountOfQuestionsPerCategory = 2;
-    String currentCategory; // = "vehicleQuestions";
+    String currentCategory = "vehicleQuestions"; // = "vehicleQuestions";
 
     //TODO: SKAPA
     DAO dao = new DAO();

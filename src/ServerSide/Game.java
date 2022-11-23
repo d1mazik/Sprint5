@@ -29,7 +29,7 @@ public class Game {
         currentPlayer = playerTwo;
         playerTwo.protocol.setCurrentState(Protocol.state.CHOOSE_CATEGORY);
         playerOne.protocol.setCurrentState(Protocol.state.WAIT);
-        currentPlayer.protocolNextStage();
+        playerOne.protocolNextStage();
     }
 
     public boolean isPlayerTwoDone() {

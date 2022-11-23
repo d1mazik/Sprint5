@@ -7,7 +7,7 @@ import java.net.Socket;
 public class ServerListener {
 
     static Game game;
-    int port = 12345;
+    int port = 50001;
 
     public ServerListener() throws IOException {
             try (

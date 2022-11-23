@@ -32,7 +32,7 @@ public static ObjectOutputStream oos;
 
         //network stuff
         String iAddress = "127.0.0.1";
-        int port = 12345;
+        int port = 50001;
 
         try(
                 Socket socketToServer = new Socket(iAddress,port);

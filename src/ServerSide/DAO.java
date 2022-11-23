@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DAO {
-    List<Category> categories;
+    List<Category> categories = new ArrayList<>();
     List<QuestionsWithAnswers> vehicleQuestions = new ArrayList<>();
 
     List<QuestionsWithAnswers> animalQuestions = new ArrayList<>();
