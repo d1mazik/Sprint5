@@ -19,6 +19,25 @@ public class Game {
     int currentRound;
     int scoreCounter;
 
+    public void incrementTotalRoundsPlayed(){
+        totalRoundsPlayed++;
+        System.out.println("Rounds played: " + totalRoundsPlayed);
+    }
+
+    public int[] getFinalScores(){
+        return new int[]{playerOneCorrectAnswers, playerTwoCorrectAnswers};
+    }
+
+    public void increaseScoreForCurrentPlayer() {
+        if (currentPlayer.equals(playerOne)) {
+            playerOneCorrectAnswers++;
+        } else if (currentPlayer.equals(playerTwo)) {
+            playerTwoCorrectAnswers++;
+        }
+        System.out.println("Spelare 1: " + playerOneCorrectAnswers);
+        System.out.println("Spelare 2: " + playerTwoCorrectAnswers);
+    }
+
     public Game(ServerSidePlayer playerOne, ServerSidePlayer playerTwo) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;

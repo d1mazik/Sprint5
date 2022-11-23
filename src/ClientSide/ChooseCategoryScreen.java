@@ -17,6 +17,7 @@ public class ChooseCategoryScreen implements ActionListener {
     JPanel categoryScreen = new JPanel();
 
     JLabel pickCategoryPrompt = new JLabel("Välj kategori för nästa rond: ");
+    JButton startRoundButton = new JButton("Påbörja runda");
     JButton categoryOne = new JButton("Category 1");
     JButton categoryTwo = new JButton("Category 2");
     JButton categoryThree = new JButton("Category 3");
@@ -28,6 +29,9 @@ public class ChooseCategoryScreen implements ActionListener {
         categoryScreen.setLayout(new GridLayout(5, 0));
 
         categoryScreen.add(pickCategoryPrompt);
+        categoryScreen.add(startRoundButton);
+        startRoundButton.addActionListener(this);
+        startRoundButton.setEnabled(false);
 
         for (JButton button : categoryButtons) {
             categoryScreen.add(button);
