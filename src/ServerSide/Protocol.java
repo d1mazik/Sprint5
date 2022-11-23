@@ -82,9 +82,7 @@ public class Protocol {
                 //ServerListener.game.playerOne.protocolNextStage();
             }
             return question.getIndexOfCorrectAnswer();
-//            boolean isCorrect = dao.validateAnswer(currentQuestion, answerIndex, currentCategory);
-//            System.out.println(isCorrect);
-//            return isCorrect;
+
         }
         if (currentState == state.END_GAME) {
             return ServerListener.game.getFinalScores();
