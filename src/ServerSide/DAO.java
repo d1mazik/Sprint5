@@ -12,6 +12,14 @@ public class DAO {
 
     List<QuestionsWithAnswers> animalQuestions = new ArrayList<>();
 
+    List<QuestionsWithAnswers> geographyQuestions = new ArrayList<>();
+
+    List<QuestionsWithAnswers> foodQuestions = new ArrayList<>();
+
+
+
+    //TODO: Implementera
+
     public void generateQuestionList() {
         String[] alternatives1 = {"1", "2", "3", "4"};
         QuestionsWithAnswers question = new QuestionsWithAnswers("Hur många däck brukar en bil ha?", alternatives1,3);
@@ -21,8 +29,8 @@ public class DAO {
         question = new QuestionsWithAnswers("Vad tillverkar Airbus?", alternatives2, 1);
         this.vehicleQuestions.add(question);
 
-        String[] alternatives3 = {"Bondkatt", "Norsk skogskatt", "Råttor", "Siamesiska kattråttor"};
-        question = new QuestionsWithAnswers("Vilken är den vanligaste kattrasen?", alternatives3,0);
+        String[] animalOne = {"Bondkatt", "Norsk skogskatt", "Råttor", "Siamesiska kattråttor"};
+        question = new QuestionsWithAnswers("Vilken är den vanligaste kattrasen?", animalOne,0);
         this.animalQuestions.add(question);
 
         String[] alternatives4 = {"quack quack","muuuuu","voff voff", "vrooooom"};
@@ -32,8 +40,6 @@ public class DAO {
     
     public DAO(){
         this.generateQuestionList();
-
-
     }
 
 //    public List<QuestionsWithAnswers> getQuestionCategoryIdentifier(String identifier,List<QuestionsWithAnswers> list){

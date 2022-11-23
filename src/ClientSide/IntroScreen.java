@@ -26,6 +26,7 @@ public class IntroScreen {
 
     }
 
+    // Eftersom att vi lägger allting i panels kan vi returnera hela paneler tillbaka till Client.
     public JPanel getIntroScreen() {
         return introBasePanel;
     }

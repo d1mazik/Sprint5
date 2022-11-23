@@ -37,9 +37,11 @@ public class PlayScreen implements ActionListener {
 
     List<JButton> buttons = Arrays.asList(answerButtonOne, answerButtonTwo, answerButtonThree, answerButtonFour);
 
+    // Eftersom att vi lägger allting i panels kan vi returnera hela paneler tillbaka till Client.
     public JPanel getPlayScreen() {
         return playScreen;
     }
+
 
     public PlayScreen(QuestionsWithAnswers question) {
         playScreen.setLayout(new GridLayout(2, 0));

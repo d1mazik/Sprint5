@@ -46,7 +46,7 @@ public static ObjectOutputStream oos;
 
             while((fromServer = ois.readObject()) != null){
                 if (fromServer instanceof Initiator){
-                    IntroScreen introScreen = new IntroScreen();
+                    introScreen = new IntroScreen();
                     gui.setCurrentPanel(introScreen.getIntroScreen());
                 } else if (fromServer instanceof QuestionsWithAnswers question) {
                     playScreen = new PlayScreen(question);
