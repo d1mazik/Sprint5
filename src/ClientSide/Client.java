@@ -62,7 +62,7 @@ public static ObjectOutputStream oos;
                 } else if (fromServer instanceof String string && string.equals("loadingQuestions")) {
                     System.out.println("Loading Questions");
                 } else if (fromServer instanceof int[] correctAnswersPerPlayer) {
-                    new EndOfGameScreen(correctAnswersPerPlayer[0], correctAnswersPerPlayer[1]);
+                    gui.setCurrentPanel(new EndOfGameScreen(correctAnswersPerPlayer[0], correctAnswersPerPlayer[1]).getEndOfGameBasePanel());
                 }
             }
         } catch (UnknownHostException e) {

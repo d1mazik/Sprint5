@@ -78,8 +78,10 @@ public class Protocol {
                 questionsAnswered = 0;
                 currentState = state.WAIT;
                 ServerListener.game.swapCurrentPlayer();
-                //ServerListener.game.playerOne.protocol.setCurrentState(state.SEND_QUESTION);
-                //ServerListener.game.playerOne.protocolNextStage();
+                //AVSLUTA SPELET OM BÅDA SPELARNA ÄR KLARA
+                if (ServerListener.game.totalRoundsPlayed == 2) {
+                    ServerListener.game.endGame();
+                }
             }
             return question.getIndexOfCorrectAnswer();
 

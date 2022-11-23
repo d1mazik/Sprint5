@@ -24,6 +24,14 @@ public class EndOfGameScreen {
         this.playerOneScore = playerOneScore;
         this.playerTwoScore = playerTwoScore;
 
+        String winner = "ingen";
+        if (playerOneScore > playerTwoScore) {
+            winner = "Spelare 1";
+        } else if (playerTwoScore > playerOneScore) {
+            winner = "Spelare 2";
+        }
+        JLabel southLabel = new JLabel(winner + " vann!!!");
+
         JLabel centerLeftLabel = new JLabel("Player One: " + playerOneScore);
         JLabel centerRightLabel = new JLabel("Player Two: " + playerTwoScore);
 
