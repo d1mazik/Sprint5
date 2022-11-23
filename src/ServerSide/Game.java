@@ -27,10 +27,9 @@ public class Game {
 
     public void initPlayerOneFirstRound() throws IOException {
         currentPlayer = playerTwo;
-        playerTwo.protocol.setCurrentState(Protocol.state.INIT);
+        playerTwo.protocol.setCurrentState(Protocol.state.CHOOSE_CATEGORY);
         playerOne.protocol.setCurrentState(Protocol.state.WAIT);
-        playerOne.protocolNextStage();
-        playerTwo.protocolNextStage();
+        currentPlayer.protocolNextStage();
     }
 
     public boolean isPlayerTwoDone() {

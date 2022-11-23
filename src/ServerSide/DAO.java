@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DAO {
+    List<Category> categories;
     List<QuestionsWithAnswers> vehicleQuestions = new ArrayList<>();
 
     List<QuestionsWithAnswers> animalQuestions = new ArrayList<>();
@@ -34,6 +35,9 @@ public class DAO {
         question = new QuestionsWithAnswers("Vad tillverkar Airbus?", alternatives2, 1);
         this.vehicleQuestions.add(question);
 
+        vehiclePackageOne = new Category(vehicleQuestions, "Fordon");
+        categories.add(vehiclePackageOne);
+
         String[] animalOne = {"Bondkatt", "Norsk skogskatt", "Råttor", "Siamesiska kattråttor"};
         question = new QuestionsWithAnswers("Vilken är den vanligaste kattrasen?", animalOne,0);
         this.animalQuestions.add(question);
@@ -42,6 +46,9 @@ public class DAO {
         String[] alternatives4 = {"quack quack","muuuuu","voff voff", "vrooooom"};
         question = new QuestionsWithAnswers("Hur låter en ko?",alternatives4,1);
         this.animalQuestions.add(question);
+
+        animalPackageOne = new Category(animalQuestions, "Djur");
+        categories.add(animalPackageOne);
     }
     
     public DAO(){
@@ -68,5 +75,9 @@ public class DAO {
             return vehicleQuestions.get(index);
         }
         return animalQuestions.get(index);
+    }
+
+    public Category getPackage(int i) {
+        return categories.get(i);
     }
 }

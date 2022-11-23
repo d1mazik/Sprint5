@@ -45,6 +45,10 @@ public class Protocol {
             return new Initiator();
            // displayEnterNamePrompt(inputFromServer);
         }
+        if (currentState == state.CHOOSE_CATEGORY) {
+            currentState = state.SEND_QUESTION;
+            return ServerListener.game.getShuffledCategoriesArray(2);
+        }
         if (currentState == state.WAIT) {
             //Gör inget
             return "wait";
