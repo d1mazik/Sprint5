@@ -21,6 +21,7 @@ public class ChooseCategoryScreen implements ActionListener {
     JButton categoryTwo = new JButton("Category 2");
     JButton categoryThree = new JButton("Category 3");
     List<JButton> categoryButtons = Arrays.asList(categoryOne, categoryTwo, categoryThree);
+    Category[] categories;
 
     //TODO: Implementera getCategoriesfunktion i QuestionsWithAnswers och ordna i DAO
     public ChooseCategoryScreen(Category[] categories) {
@@ -64,8 +65,17 @@ public class ChooseCategoryScreen implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == categoryButtons){
-
+        Category chosenCategory = null;
+        JButton buttonSelected = (JButton) e.getSource();
+        for (int i = 0; i < categoryButtons.size(); i++) {
+            if (buttonSelected.getText().equals(categories[i].getName())) {
+                chosenCategory = categories[i];
+            }
+        }
+        try {
+            Client.oos.writeObject(chosenCategory);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
         }
     }
 

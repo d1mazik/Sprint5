@@ -24,10 +24,10 @@ public class Protocol {
     //Bind till properties
     int numberOfRounds;
     int roundCounter;
-    int questionsAnswered;
+    int questionsAnswered = 0;
     // bind till action performed så att klienten skickar vilken kategori det ska vara.
     int amountOfQuestionsPerCategory = 2;
-    String currentCategory = "vehicleQuestions"; // = "vehicleQuestions";
+    Category currentCategory;
 
     //TODO: SKAPA
     DAO dao = new DAO();
@@ -42,13 +42,18 @@ public class Protocol {
 
     public Object processStage(Object inputFromServer) throws IOException {
         if (currentState == state.INIT) {
-            currentState = state.SEND_QUESTION;
+            currentState = state.CHOOSE_CATEGORY;
             return new Initiator();
            // displayEnterNamePrompt(inputFromServer);
         }
         if (currentState == state.CHOOSE_CATEGORY) {
+            currentState = state.LOAD_CATEGORY_QUESTIONS;
+            return ServerListener.game.getShuffledCategoriesArray(3);
+        }
+        if (currentState == state.LOAD_CATEGORY_QUESTIONS) {
+            currentCategory = (Category) inputFromServer;
             currentState = state.SEND_QUESTION;
-            return ServerListener.game.getShuffledCategoriesArray(2);
+            return "loadingQuestions";
         }
         if (currentState == state.WAIT) {
             //Gör inget
@@ -56,11 +61,12 @@ public class Protocol {
         }
         if (currentState == state.SEND_QUESTION) {
             currentState = state.VALIDATE_ANSWER;
-            return dao.getQuestion(questionsAnswered, currentCategory);
+            return currentCategory.getQuestionPackage().get(0);
+            //return dao.getQuestion(0, "vehicleQuestions");
         }
         if (currentState == state.VALIDATE_ANSWER) {
             currentState = state.SEND_QUESTION;
-            int answerIndex = (Integer)inputFromServer;
+            //int answerIndex = (Integer)inputFromServer;
             QuestionsWithAnswers question = (QuestionsWithAnswers) dao.getQuestion(questionsAnswered, "vehicleQuestions");
             questionsAnswered++;
             System.out.println(question.getIndexOfCorrectAnswer());

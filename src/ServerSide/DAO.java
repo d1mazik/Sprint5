@@ -49,6 +49,12 @@ public class DAO {
 
         animalPackageOne = new Category(animalQuestions, "Djur");
         categories.add(animalPackageOne);
+
+        String[] geographyOne = {"Europa", "NordAmerika", "Sydamerika", "Afrika"};
+        question = new QuestionsWithAnswers("Var ligger Amazonas", geographyOne, 2);
+        this.geographyQuestions.add(question);
+        geographyPackageOne = new Category(geographyQuestions, "Geografi");
+        categories.add(geographyPackageOne);
     }
     
     public DAO(){

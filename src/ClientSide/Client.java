@@ -59,6 +59,8 @@ public static ObjectOutputStream oos;
                     playScreen.revealAnswer(correctAnswerIndex);
                 } else if(fromServer instanceof String string && string.equals("wait")) {
                     gui.setCurrentPanel(new WaitScreen().getWaitScreen());
+                } else if (fromServer instanceof String string && string.equals("loadingQuestions")) {
+                    System.out.println("Loading Questions");
                 }
             }
         } catch (UnknownHostException e) {
