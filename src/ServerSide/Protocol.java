@@ -18,7 +18,7 @@ public class Protocol {
         SEND_QUESTION,
         WAIT,
         VALIDATE_ANSWER,
-
+        END_GAME
     }
 
     //Bind till properties
@@ -51,8 +51,8 @@ public class Protocol {
             return ServerListener.game.getShuffledCategoriesArray(3);
         }
         if (currentState == state.LOAD_CATEGORY_QUESTIONS) {
-            currentCategory = (Category) inputFromServer;
             currentState = state.SEND_QUESTION;
+            ServerListener.game.currentCategory = (Category) inputFromServer;
             return "loadingQuestions";
         }
         if (currentState == state.WAIT) {
@@ -61,16 +61,21 @@ public class Protocol {
         }
         if (currentState == state.SEND_QUESTION) {
             currentState = state.VALIDATE_ANSWER;
-            return currentCategory.getQuestionPackage().get(0);
+            return ServerListener.game.currentCategory.getQuestionPackage().get(questionsAnswered);
             //return dao.getQuestion(0, "vehicleQuestions");
         }
         if (currentState == state.VALIDATE_ANSWER) {
             currentState = state.SEND_QUESTION;
-            //int answerIndex = (Integer)inputFromServer;
-            QuestionsWithAnswers question = (QuestionsWithAnswers) dao.getQuestion(questionsAnswered, "vehicleQuestions");
+            int answerIndex = (Integer)inputFromServer;
+            QuestionsWithAnswers question = ServerListener.game.currentCategory.getQuestionPackage().get(questionsAnswered);
+            if (answerIndex == question.getIndexOfCorrectAnswer()) {
+                ServerListener.game.increaseScoreForCurrentPlayer();
+            }
             questionsAnswered++;
             System.out.println(question.getIndexOfCorrectAnswer());
-            if(questionsAnswered == amountOfQuestionsPerCategory){
+            if(questionsAnswered == 2){
+                ServerListener.game.incrementTotalRoundsPlayed();
+                questionsAnswered = 0;
                 currentState = state.WAIT;
                 ServerListener.game.swapCurrentPlayer();
                 //ServerListener.game.playerOne.protocol.setCurrentState(state.SEND_QUESTION);
@@ -80,6 +85,9 @@ public class Protocol {
 //            boolean isCorrect = dao.validateAnswer(currentQuestion, answerIndex, currentCategory);
 //            System.out.println(isCorrect);
 //            return isCorrect;
+        }
+        if (currentState == state.END_GAME) {
+            return ServerListener.game.getFinalScores();
         }
         return null;
     }

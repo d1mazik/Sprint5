@@ -69,12 +69,25 @@ public class ChooseCategoryScreen implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(startRoundButton)) {
+            try {
+                Client.oos.writeObject(new Response());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            return;
+        }
+
+        startRoundButton.setEnabled(true);
+
         Category chosenCategory = null;
         JButton buttonSelected = (JButton) e.getSource();
         for (int i = 0; i < categoryButtons.size(); i++) {
             if (buttonSelected.getText().equals(categories[i].getName())) {
                 chosenCategory = categories[i];
+                buttonSelected.setBackground(Color.blue);
             }
+            categoryButtons.get(i).setEnabled(false);
         }
         try {
             Client.oos.writeObject(chosenCategory);

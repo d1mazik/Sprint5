@@ -15,6 +15,18 @@ public class Game {
     Category vehiclePackageOne = dao.getPackage(0);
     ServerSidePlayer playerOne, playerTwo;
     ServerSidePlayer currentPlayer;
+    int playerOneCorrectAnswers;
+    int playerTwoCorrectAnswers;
+
+    Category currentCategory;
+
+    int playerOneRoundsPlayed;
+    int playerTwoRoundsPlayed;
+
+    int totalRoundsPlayed;
+
+    int numberOfAllowedRounds;
+
 
     int currentRound;
     int scoreCounter;
@@ -49,6 +61,13 @@ public class Game {
         playerTwo.protocol.setCurrentState(Protocol.state.CHOOSE_CATEGORY);
         playerOne.protocol.setCurrentState(Protocol.state.WAIT);
         playerOne.protocolNextStage();
+    }
+
+    public void endGame() throws IOException {
+        playerOne.protocol.setCurrentState(Protocol.state.END_GAME);
+        playerTwo.protocol.setCurrentState(Protocol.state.END_GAME);
+        playerOne.protocolNextStage();
+        playerTwo.protocolNextStage();
     }
 
     public boolean isPlayerTwoDone() {
