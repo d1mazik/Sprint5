@@ -14,6 +14,7 @@ public class Protocol {
         INIT,
 
         CHOOSE_CATEGORY,
+        LOAD_CATEGORY_QUESTIONS,
         SEND_QUESTION,
         WAIT,
         VALIDATE_ANSWER,
