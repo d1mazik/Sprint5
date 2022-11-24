@@ -55,17 +55,6 @@ public class ChooseCategoryScreen implements ActionListener {
         for (int i = 0; i < categories.length; i++) {
             categoryButtons.get(i).setText(categories[i].getName());
         }
-
-
-
-//        questionLabel.setText(question.getQuestion());
-//        String[] alternatives = question.getAnswerAlternatives();
-//
-//        answerButtonOne.setText(alternatives[0]);
-//        answerButtonTwo.setText(alternatives[1]);
-//        answerButtonThree.setText(alternatives[2]);
-//        answerButtonFour.setText(alternatives[3]);
-
     }
 
     @Override
@@ -97,32 +86,4 @@ public class ChooseCategoryScreen implements ActionListener {
             throw new RuntimeException(ex);
         }
     }
-
-    /*    public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(nextQuestionButton)) {
-            //Lägg till funktionalitet för att den INTE ska kunna gå att trycka på innan man har svarat på frågan.
-            try {
-                Client.oos.writeObject(new Response());
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-            return;
-        }
-
-        int selectedAnswerIndex = getSelectedAnswerIndex((JButton) e.getSource());
-        System.out.println("Selected Answer: " + selectedAnswerIndex);
-        buttons.get(selectedAnswerIndex).setBackground(Color.red);
-        nextQuestionButton.setVisible(true);
-
-        for (JButton button : buttons){
-            button.setEnabled(false);
-        }
-
-        try {
-            Client.oos.writeObject(selectedAnswerIndex);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-    }*/
-
 }

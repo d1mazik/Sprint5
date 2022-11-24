@@ -60,12 +60,7 @@ public class EndGameScreen {
         southPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         southPanel.setOpaque(true);
         southPanel.setLayout(new GridBagLayout());
-
-
-
     }
-
-
 
     // Eftersom att vi lägger allting i panels kan vi returnera hela paneler tillbaka till Client.
     public JPanel getEndOfGameBasePanel() {

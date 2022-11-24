@@ -17,14 +17,6 @@ public class IntroScreen {
         //Nedan fungerar inte
         introBasePanel.setBackground(Color.decode("#8D9EFF"));
         introBasePanel.setOpaque(true);//för att kunna se färgen(Mac)
-
-
-        /*        introBasePanel.setVisible(true);
-        introBasePanel.setSize(800, 840);
-        setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setTitle("QuizKampen");*/
-
     }
 
     // Eftersom att vi lägger allting i panels kan vi returnera hela paneler tillbaka till Client.
@@ -32,9 +24,3 @@ public class IntroScreen {
         return introBasePanel;
     }
     }
-
-// Main metoden existerar bara för debugging. Ta bort vid implementering
-//    public static void main(String[] args) {
-//        IntroScreen is = new IntroScreen();
-//    }
-//}
