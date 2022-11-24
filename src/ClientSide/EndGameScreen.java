@@ -3,7 +3,7 @@ package ClientSide;
 import javax.swing.*;
 import java.awt.*;
 
-public class EndOfGameScreen {
+public class EndGameScreen {
 
     int playerOneScore;
     int playerTwoScore;
@@ -20,7 +20,7 @@ public class EndOfGameScreen {
     JPanel southPanel = new JPanel();
 
 
-    public EndOfGameScreen(int playerOneScore, int playerTwoScore){
+    public EndGameScreen(int playerOneScore, int playerTwoScore){
         this.playerOneScore = playerOneScore;
         this.playerTwoScore = playerTwoScore;
 

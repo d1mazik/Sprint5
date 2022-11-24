@@ -14,6 +14,7 @@ public class GameProtocol {
         START_GAME,
         SEND_CATEGORIES,
         SEND_QUESTIONS,
+        WAIT_FOR_NEXT_QUESTION,
         RECEIVE_ANSWERS,
         SWAP_PLAYER,
     }
@@ -25,6 +26,21 @@ public class GameProtocol {
     state currentState = state.WAITING_FOR_PLAYERS;
     Category currentCategory;
 
+    //TODO: Bind till properties.
+    int questionsPerRound = 2;
+    int roundCounter = 0;
+    //TODOL: Bind till properties.
+    int allowedRounds = 3;
+
+    //TODO: lägg till under swap
+    int player1RoundScore;
+    int player1TotalScore;
+
+    int player2RoundScore;
+    int player2TotalScore;
+    int turnCounter = 0;
+//    int allowedQuestionsPerRound = 2;
+
     public void receive(Object fromUser) {
         if (fromUser instanceof Category chosenCategory) {
             //RECEIVE CATEGORIES
@@ -33,7 +49,7 @@ public class GameProtocol {
 
         try {
             processState();
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -48,7 +64,7 @@ public class GameProtocol {
         player2.start();
     }
 
-    public void processState() throws IOException {
+    public void processState() throws IOException, InterruptedException {
         if (currentState == state.WAITING_FOR_PLAYERS) {
             waitForPlayers();
             //waitForPlayers();
@@ -59,7 +75,7 @@ public class GameProtocol {
         }
     }
 
-    private void waitForPlayers() throws IOException {
+    private void waitForPlayers() throws IOException, InterruptedException {
         System.out.println("Entered waitForPlayers");
         if (player1 == null) {
             System.out.println("Player one is null");
@@ -92,4 +108,5 @@ public class GameProtocol {
         currentPlayer.oos.writeObject(randomCategories);
         notCurrentPlayer.oos.writeObject("wait");
     }
+
 }

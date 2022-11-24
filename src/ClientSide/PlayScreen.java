@@ -96,7 +96,7 @@ public class PlayScreen implements ActionListener {
         answerButtonFour.setText(alternatives[3]);
     }
 
-    public int getSelectedAnswerIndex(JButton selectedButton) {
+    public Integer getSelectedAnswerIndex(JButton selectedButton) {
         for (int i = 0; i < buttons.size(); i++) {
             if (buttons.get(i).equals(selectedButton)) {
                 return i;

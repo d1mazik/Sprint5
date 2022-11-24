@@ -2,14 +2,11 @@ package ClientSide;
 
 import Resources.QuestionsWithAnswers;
 import ServerSide.Category;
-import ServerSide.Initiator;
-import ServerSide.Response;
 
 import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.List;
 
 public class Client extends JFrame {
 
@@ -62,7 +59,7 @@ public static ObjectOutputStream oos;
                 } else if (fromServer instanceof String string && string.equals("loadingQuestions")) {
                     System.out.println("Loading Questions");
                 } else if (fromServer instanceof int[] correctAnswersPerPlayer) {
-                    gui.setCurrentPanel(new EndOfGameScreen(correctAnswersPerPlayer[0], correctAnswersPerPlayer[1]).getEndOfGameBasePanel());
+                    gui.setCurrentPanel(new EndGameScreen(correctAnswersPerPlayer[0], correctAnswersPerPlayer[1]).getEndOfGameBasePanel());
                 }
             }
         } catch (UnknownHostException e) {

@@ -54,7 +54,7 @@ public class DAO {
         question = new QuestionsWithAnswers("Var ligger Amazonas", geographyOne, 2);
         this.geographyQuestions.add(question);
         geographyPackageOne = new Category(geographyQuestions, "Geografi");
-        categories.add(geographyPackageOne);
+//        categories.add(geographyPackageOne);
 
         String[] geographyTwo = {"Europa", "NordAmerika", "Sydamerika", "Afrika"};
         question = new QuestionsWithAnswers("Var ligger Paris?", geographyTwo, 2);

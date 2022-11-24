@@ -9,7 +9,13 @@ public class ServerSidePlayer extends Thread{
     GameProtocol gameProtocol;
     Socket socketToClient;
     ObjectOutputStream oos;
-    Protocol protocol;
+
+    int correctAnswers;
+
+    public void incrementCorrectAnswers() {
+        correctAnswers++;
+        System.out.println("Correct answers: " + correctAnswers);
+    }
 
     public ServerSidePlayer(Socket socketToClient, GameProtocol gameProtocol) {
         this.gameProtocol = gameProtocol;
