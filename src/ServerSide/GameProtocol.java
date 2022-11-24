@@ -38,18 +38,20 @@ public class GameProtocol {
         }
     }
 
-    public GameProtocol(Socket socketForPlayerOne, Socket socketForPlayerTwo) {
-        this.player1 = new ServerSidePlayer(socketForPlayerOne);
-        this.player2 = new ServerSidePlayer(socketForPlayerTwo);
-
-        this.player1.start();
-        this.player2.start();
+    public void setPlayer1(ServerSidePlayer player1) throws IOException {
+        this.player1 = player1;
+        player1.start();
     }
 
+    public void setPlayer2(ServerSidePlayer player2) throws IOException {
+        this.player2 = player2;
+        player2.start();
+    }
 
     public void processState() throws IOException {
         if (currentState == state.WAITING_FOR_PLAYERS) {
             waitForPlayers();
+            //waitForPlayers();
         } else if (currentState == state.START_GAME) {
             startGame();
         } else if (currentState == state.SEND_CATEGORIES) {
@@ -60,6 +62,7 @@ public class GameProtocol {
     private void waitForPlayers() throws IOException {
         System.out.println("Entered waitForPlayers");
         if (player1 == null) {
+            System.out.println("Player one is null");
             return;
         }
         System.out.println("Sent: 'waitForPlayers'");
@@ -68,6 +71,7 @@ public class GameProtocol {
             return;
         }
         player2.oos.writeObject("waitForPlayers");
+        System.out.println("SENT WAIT FOR PLAYERS");
         currentState = state.START_GAME;
     }
 

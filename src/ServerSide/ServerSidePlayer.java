@@ -6,11 +6,13 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ServerSidePlayer extends Thread{
+    GameProtocol gameProtocol;
     Socket socketToClient;
     ObjectOutputStream oos;
     Protocol protocol;
 
-    public ServerSidePlayer(Socket socketToClient){
+    public ServerSidePlayer(Socket socketToClient, GameProtocol gameProtocol) {
+        this.gameProtocol = gameProtocol;
         this.socketToClient = socketToClient;
     }
 
@@ -24,13 +26,10 @@ public class ServerSidePlayer extends Thread{
             Object fromUser;
             Object fromServer;
 
-            ServerListener.gameProtocol.receive(new Response());
+            gameProtocol.receive(new Response());
 
             while((fromUser = ois.readObject()) != null){
-                ServerListener.gameProtocol.receive(fromUser);
-                //oos.writeObject(protocol.processStage(fromUser));
-                // FÖR DEBUGGING:
-                //System.out.println("Sent: " + fromUser);
+                gameProtocol.receive(fromUser);
             }
 
         } catch (IOException e) {
