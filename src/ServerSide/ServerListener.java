@@ -8,7 +8,6 @@ import java.util.List;
 
 public class ServerListener {
 
-    GameProtocol gameProtocol = new GameProtocol();
     int port = 50001;
 
     public ServerListener() throws IOException {
@@ -18,6 +17,7 @@ public class ServerListener {
             {
 
                 while(true) {
+                    GameProtocol gameProtocol = new GameProtocol();
                     gameProtocol.setPlayer1(new ServerSidePlayer(serverSocket.accept(), gameProtocol));
                     gameProtocol.setPlayer2(new ServerSidePlayer(serverSocket.accept(), gameProtocol));
                     //Game game = new Game(playerOne, playerTwo);

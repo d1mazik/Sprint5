@@ -17,6 +17,8 @@ public class GameProtocol {
         WAIT_FOR_NEXT_QUESTION,
         RECEIVE_ANSWERS,
         SWAP_PLAYER,
+        WAIT_FOR_OPPONENT,
+        END_GAME,
     }
 
     DAO database = new DAO();
@@ -41,10 +43,16 @@ public class GameProtocol {
     int turnCounter = 0;
 //    int allowedQuestionsPerRound = 2;
 
-    public void receive(Object fromUser) {
+
+    int currentQuestionIndex = 0;
+
+    public void receive(Object fromUser) throws IOException {
         if (fromUser instanceof Category chosenCategory) {
             //RECEIVE CATEGORIES
             this.currentCategory = chosenCategory;
+            currentState = state.SEND_QUESTIONS;
+        } else if (fromUser instanceof Integer selectedAnswer) {
+            validateAnswer(selectedAnswer);
         }
 
         try {
@@ -52,6 +60,20 @@ public class GameProtocol {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public int[] getFinalScores(){
+        return new int[]{player1.correctAnswers, player2.correctAnswers};
+    }
+    private void validateAnswer(Integer selectedAnswer) throws IOException {
+        Integer correctAnswerIndex =
+                currentCategory.getQuestionPackage().get(currentQuestionIndex).getIndexOfCorrectAnswer();
+        if (correctAnswerIndex.equals(selectedAnswer)) {
+            currentPlayer.incrementCorrectAnswers();
+        }
+        currentQuestionIndex++;
+        currentState = state.WAIT_FOR_NEXT_QUESTION;
+        currentPlayer.oos.writeObject(correctAnswerIndex);
     }
 
     public void setPlayer1(ServerSidePlayer player1) throws IOException {
@@ -70,9 +92,51 @@ public class GameProtocol {
             //waitForPlayers();
         } else if (currentState == state.START_GAME) {
             startGame();
+            currentState = state.SEND_CATEGORIES;
+            processState();
         } else if (currentState == state.SEND_CATEGORIES) {
             sendCategories();
+        } else if (currentState == state.SEND_QUESTIONS) {
+            sendQuestion();
+        } else if (currentState == state.WAIT_FOR_NEXT_QUESTION) {
+            if (currentQuestionIndex >= questionsPerRound) {
+                currentQuestionIndex = 0;
+                currentState = state.SWAP_PLAYER;
+            } else {
+                currentState = state.SEND_QUESTIONS;
+            }
+        } else if (currentState == state.SWAP_PLAYER) {
+            turnCounter++;
+            if (turnCounter == 2) {
+                turnCounter = 0;
+                roundCounter++;
+                if (roundCounter == allowedRounds) {
+                    currentState = state.END_GAME;
+                } else {
+                    currentState = state.SEND_CATEGORIES;
+                }
+            } else {
+                swapPlayer();
+                currentState = state.SEND_QUESTIONS;
+            }
+            processState();
+        } else if (currentState == state.END_GAME){
+            player1.oos.writeObject(getFinalScores());
+            player2.oos.writeObject(getFinalScores());
         }
+
+    }
+
+    private void swapPlayer() throws IOException {
+        currentPlayer.oos.writeObject("wait");
+
+        ServerSidePlayer toBeCurrentPlayer = notCurrentPlayer;
+        notCurrentPlayer = currentPlayer;
+        currentPlayer = toBeCurrentPlayer;
+    }
+
+    private void sendQuestion() throws IOException {
+        currentPlayer.oos.writeObject(currentCategory.getQuestionPackage().get(currentQuestionIndex));
     }
 
     private void waitForPlayers() throws IOException, InterruptedException {
@@ -89,9 +153,10 @@ public class GameProtocol {
         player2.oos.writeObject("waitForPlayers");
         System.out.println("SENT WAIT FOR PLAYERS");
         currentState = state.START_GAME;
+        processState();
     }
 
-    private void startGame(){
+    private void startGame() {
         currentPlayer = player1;
         notCurrentPlayer = player2;
     }
