@@ -71,18 +71,6 @@ public class PlayScreen implements ActionListener {
         nextQuestionButton.addActionListener(this);
         nextQuestionButton.setVisible(false);
 
-        //southMainPanel.add(answerButtonOne);
-        //answerButtonOne.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        //answerButtonOne.setBackground(Color.decode("#8D9EFF"));
-        //southMainPanel.add(answerButtonTwo);
-        //answerButtonTwo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        //answerButtonTwo.setBackground(Color.decode("#8D9EFF"));
-        //southMainPanel.add(answerButtonThree);
-        //answerButtonThree.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        //answerButtonThree.setBackground(Color.decode("#8D9EFF"));
-        //southMainPanel.add(answerButtonFour);
-        //answerButtonFour.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        //answerButtonFour.setBackground(Color.decode("#8D9EFF"));
         loadQuestion(question);
     }
 
@@ -104,7 +92,6 @@ public class PlayScreen implements ActionListener {
         }
         return -1;
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
