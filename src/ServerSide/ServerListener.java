@@ -3,10 +3,12 @@ package ServerSide;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServerListener {
 
-    static Game game;
+    static GameProtocol gameProtocol;
     int port = 50001;
 
     public ServerListener() throws IOException {
@@ -16,16 +18,10 @@ public class ServerListener {
             {
 
                 while(true) {
-                    Socket socketToClient = serverSocket.accept();
-                    ServerSidePlayer playerOne = new ServerSidePlayer(socketToClient);
-                    playerOne.start();
-
-                    socketToClient = serverSocket.accept();
-                    ServerSidePlayer playerTwo = new ServerSidePlayer(socketToClient);
-                    playerTwo.start();
-
-                    game = new Game(playerOne, playerTwo);
-                    game.initPlayerOneFirstRound();
+                    gameProtocol = new GameProtocol(serverSocket.accept(), serverSocket.accept());
+                    //Game game = new Game(playerOne, playerTwo);
+                    //games.add(game);
+                    //game.initPlayerOneFirstRound();
                     //playerOne.protocolNextStage();
                     //playerOne.oos.writeObject(playerOne.protocol.processStage(null));
                     /*

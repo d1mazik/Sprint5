@@ -14,10 +14,6 @@ public class ServerSidePlayer extends Thread{
         this.socketToClient = socketToClient;
     }
 
-    public void protocolNextStage() throws IOException {
-        this.oos.writeObject(protocol.processStage(null));
-    }
-
     public void run(){
         try     (
                 ObjectOutputStream oos = new ObjectOutputStream(socketToClient.getOutputStream());
@@ -28,12 +24,13 @@ public class ServerSidePlayer extends Thread{
             Object fromUser;
             Object fromServer;
 
-            oos.writeObject(protocol.processStage(null));
+            ServerListener.gameProtocol.receive(new Response());
 
             while((fromUser = ois.readObject()) != null){
-                oos.writeObject(protocol.processStage(fromUser));
+                ServerListener.gameProtocol.receive(fromUser);
+                //oos.writeObject(protocol.processStage(fromUser));
                 // FÖR DEBUGGING:
-                System.out.println("Sent: " + fromUser);
+                //System.out.println("Sent: " + fromUser);
             }
 
         } catch (IOException e) {

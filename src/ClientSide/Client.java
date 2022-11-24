@@ -47,7 +47,7 @@ public static ObjectOutputStream oos;
                     new BufferedReader(new InputStreamReader(System.in));
 
             while((fromServer = ois.readObject()) != null){
-                if (fromServer instanceof Initiator){
+                if (fromServer instanceof String string && string.equals("waitForPlayers")){
                     introScreen = new IntroScreen();
                     gui.setCurrentPanel(introScreen.getIntroScreen());
                 } else if (fromServer instanceof Category[] categories) {

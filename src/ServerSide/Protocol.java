@@ -12,7 +12,6 @@ public class Protocol {
     enum state{
         // waiting ansvarar för att connection upprättas mellan två spelare INNAN spelet påbörjas
         INIT,
-
         CHOOSE_CATEGORY,
         LOAD_CATEGORY_QUESTIONS,
         SEND_QUESTION,
@@ -21,6 +20,7 @@ public class Protocol {
         END_GAME
     }
 
+    Game game;
     //Bind till properties
     int numberOfRounds;
     int roundCounter;
@@ -29,8 +29,9 @@ public class Protocol {
     int amountOfQuestionsPerCategory = 2;
     int correctAnswerCounter;
 
-    //TODO: SKAPA
-    DAO dao = new DAO();
+    Protocol(int gameIndexInList) {
+        //game = ServerListener.games.get(gameIndexInList);
+    }
 
     private state currentState = state.INIT;
     public void setCurrentState(state state) {
@@ -48,11 +49,11 @@ public class Protocol {
         }
         if (currentState == state.CHOOSE_CATEGORY) {
             currentState = state.LOAD_CATEGORY_QUESTIONS;
-            return ServerListener.game.getShuffledCategoriesArray(3);
+            return game.getShuffledCategoriesArray(3);
         }
         if (currentState == state.LOAD_CATEGORY_QUESTIONS) {
             currentState = state.SEND_QUESTION;
-            ServerListener.game.currentCategory = (Category) inputFromServer;
+            game.currentCategory = (Category) inputFromServer;
             return "loadingQuestions";
         }
         if (currentState == state.WAIT) {
@@ -61,33 +62,33 @@ public class Protocol {
         }
         if (currentState == state.SEND_QUESTION) {
             currentState = state.VALIDATE_ANSWER;
-            return ServerListener.game.currentCategory.getQuestionPackage().get(questionsAnswered);
+            return game.currentCategory.getQuestionPackage().get(questionsAnswered);
             //return dao.getQuestion(0, "vehicleQuestions");
         }
         if (currentState == state.VALIDATE_ANSWER) {
             currentState = state.SEND_QUESTION;
             int answerIndex = (Integer)inputFromServer;
-            QuestionsWithAnswers question = ServerListener.game.currentCategory.getQuestionPackage().get(questionsAnswered);
+            QuestionsWithAnswers question = game.currentCategory.getQuestionPackage().get(questionsAnswered);
             if (answerIndex == question.getIndexOfCorrectAnswer()) {
-                ServerListener.game.increaseScoreForCurrentPlayer();
+                game.increaseScoreForCurrentPlayer();
             }
             questionsAnswered++;
             System.out.println(question.getIndexOfCorrectAnswer());
             if(questionsAnswered == 2){
-                ServerListener.game.incrementTotalRoundsPlayed();
+                game.incrementTotalRoundsPlayed();
                 questionsAnswered = 0;
                 currentState = state.WAIT;
-                ServerListener.game.swapCurrentPlayer();
+                game.swapCurrentPlayer();
                 //AVSLUTA SPELET OM BÅDA SPELARNA ÄR KLARA
-                if (ServerListener.game.totalRoundsPlayed == 2) {
-                    ServerListener.game.endGame();
+                if (game.totalRoundsPlayed == 2) {
+                    game.endGame();
                 }
             }
             return question.getIndexOfCorrectAnswer();
 
         }
         if (currentState == state.END_GAME) {
-            return ServerListener.game.getFinalScores();
+            return game.getFinalScores();
         }
         return null;
     }
