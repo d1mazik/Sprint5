@@ -6,10 +6,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ServerSidePlayer extends Thread{
-    int port = 44444;
     Socket socketToClient;
     ObjectOutputStream oos;
-    Protocol protocol = new Protocol();
+    Protocol protocol;
+
     public ServerSidePlayer(Socket socketToClient){
         this.socketToClient = socketToClient;
     }
@@ -43,5 +43,4 @@ public class ServerSidePlayer extends Thread{
         }
 
     }
-
 }

@@ -60,14 +60,14 @@ public class Game {
         currentPlayer = playerTwo;
         playerTwo.protocol.setCurrentState(Protocol.state.CHOOSE_CATEGORY);
         playerOne.protocol.setCurrentState(Protocol.state.WAIT);
-        playerOne.protocolNextStage();
+//        playerOne.protocolNextStage();
     }
 
     public void endGame() throws IOException {
         playerOne.protocol.setCurrentState(Protocol.state.END_GAME);
         playerTwo.protocol.setCurrentState(Protocol.state.END_GAME);
-        playerOne.protocolNextStage();
-        playerTwo.protocolNextStage();
+//        playerOne.protocolNextStage();
+//        playerTwo.protocolNextStage();
     }
 
     public boolean isPlayerTwoDone() {
@@ -124,6 +124,6 @@ public class Game {
         }
 
         currentPlayer.protocol.setCurrentState(Protocol.state.SEND_QUESTION);
-        currentPlayer.protocolNextStage();
+//        currentPlayer.protocolNextStage();
     }
 }
