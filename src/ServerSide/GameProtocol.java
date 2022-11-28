@@ -1,11 +1,8 @@
 package ServerSide;
 
 import java.io.IOException;
-import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Spliterator;
 
 public class GameProtocol {
 
@@ -41,7 +38,7 @@ public class GameProtocol {
     int player2RoundScore;
     int player2TotalScore;
     int turnCounter = 0;
-//    int allowedQuestionsPerRound = 2;
+    int allowedNumberofCategories = 3;
 
 
     int currentQuestionIndex = 0;
@@ -107,9 +104,13 @@ public class GameProtocol {
             }
         } else if (currentState == state.SWAP_PLAYER) {
             turnCounter++;
+            System.out.println("Turn counter: " + turnCounter);
             if (turnCounter == 2) {
+                //TODO:  nedanstående fungerar inte. Återkoppla till detta senare i mån av tid
+//                database.removeUsedQuestionPackageFromCategory(currentCategory, questionsPerRound);
                 turnCounter = 0;
                 roundCounter++;
+                System.out.println("Round counter: " + roundCounter);
                 if (roundCounter == allowedRounds) {
                     currentState = state.END_GAME;
                 } else {
@@ -126,6 +127,15 @@ public class GameProtocol {
         }
 
     }
+
+
+
+
+//    private void removeUsedQuestionsFromGame() {
+//        if (questionsPerRound > 0) {
+//            currentCategory.getQuestionPackage().subList(0, questionsPerRound).clear();
+//        }
+//    }
 
     private void swapPlayer() throws IOException {
         currentPlayer.oos.writeObject("wait");
@@ -165,8 +175,8 @@ public class GameProtocol {
         List<Category> categoryList = database.categories;
         Collections.shuffle(categoryList);
 
-        Category[] randomCategories = new Category[3];
-        for (int i = 0; i < 3; i++) {
+        Category[] randomCategories = new Category[allowedNumberofCategories];
+        for (int i = 0; i < allowedNumberofCategories; i++) {
             randomCategories[i] = categoryList.get(i);
         }
 

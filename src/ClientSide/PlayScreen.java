@@ -1,6 +1,6 @@
 package ClientSide;
 
-import Resources.QuestionsWithAnswers;
+import Resources.QuestionPackage;
 import ServerSide.Response;
 
 import javax.swing.*;
@@ -43,7 +43,7 @@ public class PlayScreen implements ActionListener {
     }
 
 
-    public PlayScreen(QuestionsWithAnswers question) {
+    public PlayScreen(QuestionPackage question) {
         playScreen.setLayout(new GridLayout(2, 0));
 
         playScreen.add(northMainPanel);
@@ -74,7 +74,7 @@ public class PlayScreen implements ActionListener {
         loadQuestion(question);
     }
 
-    public void loadQuestion(QuestionsWithAnswers question) {
+    public void loadQuestion(QuestionPackage question) {
         questionLabel.setText(question.getQuestion());
         String[] alternatives = question.getAnswerAlternatives();
 

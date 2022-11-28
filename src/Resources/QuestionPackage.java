@@ -5,13 +5,13 @@ import java.io.Serializable;
 
 //Klassen är till för att kunna skapa upp hela objekt av frågor och svar som vi sedan kan skicka genom ObjeckIOstreams.
 //Objekten skapas upp i klassen QuestionsAnswersList
-public class QuestionsWithAnswers implements Serializable {
+public class QuestionPackage implements Serializable {
     private String question;
     private String[] answerAlternatives = new String[4];
     private int indexOfCorrectAnswer;
 
 
-    public QuestionsWithAnswers(String question, String[] answerAlternatives, int indexOfCorrectAnswer) {
+    public QuestionPackage(String question, String[] answerAlternatives, int indexOfCorrectAnswer) {
         this.question = question;
         this.answerAlternatives = answerAlternatives;
         this.indexOfCorrectAnswer = indexOfCorrectAnswer;

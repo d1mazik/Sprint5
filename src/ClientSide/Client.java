@@ -1,6 +1,6 @@
 package ClientSide;
 
-import Resources.QuestionsWithAnswers;
+import Resources.QuestionPackage;
 import ServerSide.Category;
 
 import javax.swing.*;
@@ -49,7 +49,7 @@ public static ObjectOutputStream oos;
                     gui.setCurrentPanel(introScreen.getIntroScreen());
                 } else if (fromServer instanceof Category[] categories) {
                     gui.setCurrentPanel(new ChooseCategoryScreen(categories).getCategoryScreen());
-                }else if (fromServer instanceof QuestionsWithAnswers question) {
+                }else if (fromServer instanceof QuestionPackage question) {
                     playScreen = new PlayScreen(question);
                     gui.setCurrentPanel(playScreen.getPlayScreen());
                 } else if (fromServer instanceof Integer correctAnswerIndex) {

@@ -1,69 +1,108 @@
 package ServerSide;
 
-import Resources.QuestionsWithAnswers;
+import Resources.QuestionPackage;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DAO {
     List<Category> categories = new ArrayList<>();
-    List<QuestionsWithAnswers> vehicleQuestions = new ArrayList<>();
+    List<QuestionPackage> vehicleQuestions = new ArrayList<>();
 
-    List<QuestionsWithAnswers> animalQuestions = new ArrayList<>();
+    List<QuestionPackage> animalQuestions = new ArrayList<>();
 
-    List<QuestionsWithAnswers> geographyQuestions = new ArrayList<>();
+    List<QuestionPackage> geographyQuestions = new ArrayList<>();
 
-    List<QuestionsWithAnswers> foodQuestions = new ArrayList<>();
+    List<QuestionPackage> foodQuestions = new ArrayList<>();
 
-    Category animalPackageOne;
-    Category vehiclePackageOne;
-    Category geographyPackageOne;
-    Category foodPackageOne;
-
+    Category animalCategory;
+    Category vehicleCategory;
+    Category geographyCategory;
+    Category foodCategory;
 
 
     //TODO: Implementera
 
     public void generateQuestionList() {
-        String[] alternatives1 = {"1", "2", "3", "4"};
-        QuestionsWithAnswers question = new QuestionsWithAnswers("Hur många däck brukar en bil ha?", alternatives1,3);
-        this.vehicleQuestions.add(question);
 
-        String[] alternatives2 = {"Datormöss", "Flygplan", "Torktumlare", "Godis"};
-        question = new QuestionsWithAnswers("Vad tillverkar Airbus?", alternatives2, 1);
-        this.vehicleQuestions.add(question);
+        String[] vehicleAnswersOne = {"1", "2", "3", "4"};
+        QuestionPackage questionPackage = new QuestionPackage("Hur många däck brukar en bil ha?", vehicleAnswersOne, 3);
+        this.vehicleQuestions.add(questionPackage);
 
-        vehiclePackageOne = new Category(vehicleQuestions, "Fordon");
-        categories.add(vehiclePackageOne);
+        String[] vehicleAnswersTwo = {"Datormöss", "Flygplan", "Torktumlare", "Godis"};
+        questionPackage = new QuestionPackage("Vad tillverkar Airbus?", vehicleAnswersTwo, 1);
+        this.vehicleQuestions.add(questionPackage);
 
-        String[] animalOne = {"Bondkatt", "Norsk skogskatt", "Råttor", "Siamesiska kattråttor"};
-        question = new QuestionsWithAnswers("Vilken är den vanligaste kattrasen?", animalOne,0);
-        this.animalQuestions.add(question);
+        String[] vehicleAnswersThree = {"Kattsand", "Flygplan", "Granatgevär", "Simulatorsystem"};
+        questionPackage = new QuestionPackage("Vilket av följande tillverkar INTE Saab?", vehicleAnswersThree, 0);
+        this.vehicleQuestions.add(questionPackage);
 
+        String[] vehicleAnswersFour = {"Taurus", "Mustang", "F-serie lastbilar", "Focus"};
+        questionPackage = new QuestionPackage("Vilken fordmodell producerades under mest antal år?", vehicleAnswersFour, 2);
+        this.vehicleQuestions.add(questionPackage);
 
-        String[] alternatives4 = {"quack quack","muuuuu","voff voff", "vrooooom"};
-        question = new QuestionsWithAnswers("Hur låter en ko?",alternatives4,1);
-        this.animalQuestions.add(question);
+        String[] animalAnswersOne = {"Bondkatt", "Norsk skogskatt", "Råttor", "Siamesiska kattråttor"};
+        questionPackage = new QuestionPackage("Vilken är den vanligaste kattrasen?", animalAnswersOne, 0);
+        this.animalQuestions.add(questionPackage);
 
-        animalPackageOne = new Category(animalQuestions, "Djur");
-        categories.add(animalPackageOne);
+        String[] animalAnswersTwo = {"quack quack", "muuuuu", "voff voff", "vrooooom"};
+        questionPackage = new QuestionPackage("Hur låter en ko?", animalAnswersTwo, 1);
+        this.animalQuestions.add(questionPackage);
 
-        String[] geographyOne = {"Europa", "NordAmerika", "Sydamerika", "Afrika"};
-        question = new QuestionsWithAnswers("Var ligger Amazonas", geographyOne, 2);
-        this.geographyQuestions.add(question);
-        geographyPackageOne = new Category(geographyQuestions, "Geografi");
-//        categories.add(geographyPackageOne);
+        String[] animalAnswersThree = {"Babian", "Koala", "Panda", "Hyena"};
+        questionPackage = new QuestionPackage("Vilket djurs \"skratt\" är en reaktion till att den känner sig hotad?", animalAnswersThree, 3);
+        this.animalQuestions.add(questionPackage);
 
-        String[] geographyTwo = {"Europa", "NordAmerika", "Sydamerika", "Afrika"};
-        question = new QuestionsWithAnswers("Var ligger Paris?", geographyTwo, 2);
-        this.geographyQuestions.add(question);
-        geographyPackageOne = new Category(geographyQuestions, "Geografi");
-        categories.add(geographyPackageOne);
+        String[] animalAnswersFour = {"Babian", "Lejon", "Hund", "Zebra"};
+        questionPackage = new QuestionPackage("Vilket djur klättrar i träd?", animalAnswersFour, 0);
+        this.animalQuestions.add(questionPackage);
+
+        String[] geographyAnswersOne = {"Europa", "NordAmerika", "Sydamerika", "Afrika"};
+        questionPackage = new QuestionPackage("Var ligger Amazonas", geographyAnswersOne, 2);
+        this.geographyQuestions.add(questionPackage);
+
+        String[] geographyAnswersTwo = {"Europa", "NordAmerika", "Sydamerika", "Afrika"};
+        questionPackage = new QuestionPackage("Var ligger Paris?", geographyAnswersTwo, 2);
+        this.geographyQuestions.add(questionPackage);
+
+        String[] geographyAnswersThree = {"43,51,21,24"};
+        questionPackage = new QuestionPackage("Hur många län indelas Sverige i?", geographyAnswersThree, 2);
+        this.geographyQuestions.add(questionPackage);
+
+        String[] geographyAnswersFour = {"Island","Schweiz","Norge","Ryssland"};
+        questionPackage = new QuestionPackage("Vilket är det nordligaste landet i Europa?", geographyAnswersFour, 2);
+        this.geographyQuestions.add(questionPackage);
+
+        String[] foodAnswersOne = {"Kolhydrat", "Fett", "Protein", "Vatten"};
+        questionPackage = new QuestionPackage("Vilket av följande är INTE en makronutrient?", foodAnswersOne, 3);
+        this.foodQuestions.add(questionPackage);
+
+        String[] foodAnswersTwo = {"2", "3", "7", "12"};
+        questionPackage = new QuestionPackage("Hur många kalorier innehåller ett gram alkohol?", foodAnswersTwo, 2);
+        this.foodQuestions.add(questionPackage);
+
+        String[] foodAnswersThree = {"Europa", "Asien", "Afrika", "Sydamerika"};
+        questionPackage = new QuestionPackage("Var kommer ris ifrån?", foodAnswersThree, 1);
+        this.foodQuestions.add(questionPackage);
+
+        String[] foodAnswersFour = {"Svampar och morötter", "Lök och rödbetor", "Vitkol och purjolök", "Äpplen och morötter"};
+        questionPackage = new QuestionPackage("vad är huvudingrediensen i boeuf bourguignon?", foodAnswersFour, 0);
+        this.foodQuestions.add(questionPackage);
+
+        vehicleCategory = new Category(vehicleQuestions, "Fordon");
+        categories.add(vehicleCategory);
+
+        animalCategory = new Category(animalQuestions, "Djur");
+        categories.add(animalCategory);
+
+        geographyCategory = new Category(geographyQuestions, "Geografi");
+        categories.add(geographyCategory);
+
+        foodCategory = new Category(foodQuestions, "Mat");
+        categories.add(foodCategory);
     }
-    
-    public DAO(){
+
+    public DAO() {
         this.generateQuestionList();
     }
 
@@ -72,7 +111,7 @@ public class DAO {
 //    }
 
 
-// Är tänkt att användas för poängräkning. 
+    // Är tänkt att användas för poängräkning.
     public boolean validateAnswer(int indexOfQuestion, int indexOfAnswer, String identifier) {
         if (identifier.equals("vehicleQuestions")) {
             return indexOfAnswer == vehicleQuestions.get(indexOfQuestion).getIndexOfCorrectAnswer();
@@ -91,5 +130,24 @@ public class DAO {
 
     public Category getPackage(int i) {
         return categories.get(i);
+    }
+
+    //TODO: Metod ämnad att kunna ta bort frågepaket från ett pågående spel. Återkom till detta senare i mån av tid.
+
+//    public void removeUsedQuestionPackageFromCategory(Category currentCategory, int questionsPerRound) {
+//        for (Category category : categories) {
+//            if (category.getName().equals(currentCategory.getName())) {
+//                currentCategory = category;
+//            }
+//        }
+//
+//        for (int i = 0; i < questionsPerRound; i++) {
+//            currentCategory.getQuestionPackage().remove(0);
+//        }
+//    }
+
+
+    public void deleteCategoryByName(String name) {
+        categories.removeIf(category -> category.getName().equals(name));
     }
 }

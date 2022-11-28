@@ -1,6 +1,6 @@
 package ServerSide;
 
-import Resources.QuestionsWithAnswers;
+import Resources.QuestionPackage;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public class Category implements Serializable {
 
     String name;
-    List<QuestionsWithAnswers> questionPackage;
+    List<QuestionPackage> questionPackage;
 
-    public Category(List<QuestionsWithAnswers> questionPackage, String name){
+    public Category(List<QuestionPackage> questionPackage, String name){
         this.questionPackage = questionPackage;
         this.name = name;
     }
@@ -23,11 +23,11 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public List<QuestionsWithAnswers> getQuestionPackage() {
+    public List<QuestionPackage> getQuestionPackage() {
         return questionPackage;
     }
 
-    public void setQuestionPackage(List<QuestionsWithAnswers> questionPackage) {
+    public void setQuestionPackage(List<QuestionPackage> questionPackage) {
         this.questionPackage = questionPackage;
     }
 }
