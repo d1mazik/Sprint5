@@ -6,6 +6,8 @@ import java.util.List;
 
 public class GameProtocol {
 
+    public GameProtocol()throws IOException{}
+
     private enum state {
         WAITING_FOR_PLAYERS,
         START_GAME,
@@ -19,6 +21,7 @@ public class GameProtocol {
     }
 
     DAO database = new DAO();
+    private ReadProperties p = new ReadProperties();
 
     ServerSidePlayer player1, player2;
     ServerSidePlayer currentPlayer, notCurrentPlayer;
@@ -26,10 +29,10 @@ public class GameProtocol {
     Category currentCategory;
 
     //TODO: Bind till properties.
-    int questionsPerRound = 2;
+    int questionsPerRound = p.getQuestionsInRound();
     int roundCounter = 0;
-    //TODOL: Bind till properties.
-    int allowedRounds = 3;
+    //TODO: Bind till properties.
+    int allowedRounds = p.getRounds();
 
     //TODO: lägg till under swap
     int player1RoundScore;

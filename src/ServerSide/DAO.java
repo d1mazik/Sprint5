@@ -35,7 +35,7 @@ public class DAO {
     //TODO: Implementera
 
     public void generateQuestionList() {
-
+        //VECHICLE
         String[] vehicleAnswersOne = {"1", "2", "3", "4"};
         QuestionPackage questionPackage = new QuestionPackage("Hur många däck brukar en bil ha?", vehicleAnswersOne, 3);
         this.vehicleQuestions.add(questionPackage);
@@ -52,6 +52,7 @@ public class DAO {
         questionPackage = new QuestionPackage("Vilken fordmodell producerades under mest antal år?", vehicleAnswersFour, 2);
         this.vehicleQuestions.add(questionPackage);
 
+        //ANIMAL
         String[] animalAnswersOne = {"Bondkatt", "Norsk skogskatt", "Råttor", "Siamesiska kattråttor"};
         questionPackage = new QuestionPackage("Vilken är den vanligaste kattrasen?", animalAnswersOne, 0);
         this.animalQuestions.add(questionPackage);
@@ -68,6 +69,7 @@ public class DAO {
         questionPackage = new QuestionPackage("Vilket djur klättrar i träd?", animalAnswersFour, 0);
         this.animalQuestions.add(questionPackage);
 
+        //GEOGRAPHY
         String[] geographyAnswersOne = {"Europa", "NordAmerika", "Sydamerika", "Afrika"};
         questionPackage = new QuestionPackage("Var ligger Amazonas", geographyAnswersOne, 2);
         this.geographyQuestions.add(questionPackage);
@@ -84,6 +86,7 @@ public class DAO {
         questionPackage = new QuestionPackage("Vilket är det nordligaste landet i Europa?", geographyAnswersFour, 2);
         this.geographyQuestions.add(questionPackage);
 
+        //FOOD
         String[] foodAnswersOne = {"Kolhydrat", "Fett", "Protein", "Vatten"};
         questionPackage = new QuestionPackage("Vilket av följande är INTE en makronutrient?", foodAnswersOne, 3);
         this.foodQuestions.add(questionPackage);
