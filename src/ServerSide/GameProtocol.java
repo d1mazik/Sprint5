@@ -146,6 +146,7 @@ public class GameProtocol {
     }
 
     private void sendQuestion() throws IOException {
+        currentPlayer.oos.reset();
         currentPlayer.oos.writeObject(currentCategory.getQuestionPackage().get(currentQuestionIndex));
     }
 
