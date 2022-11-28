@@ -10,7 +10,7 @@ public class ClientGUI extends JFrame {
     ClientGUI() {
         this.add(currentPanel);
         this.setVisible(true);
-        this.setSize(800, 840);
+        this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("QuizKampen");

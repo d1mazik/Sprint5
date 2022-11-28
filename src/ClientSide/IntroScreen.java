@@ -7,15 +7,14 @@ public class IntroScreen {
 
     //INTROSCREEN
     JPanel introBasePanel = new JPanel();
-    JLabel introTitelLabel = new JLabel("Quizkampen",SwingConstants.CENTER);
-    JLabel introTextLabel = new JLabel("Waiting for another player to connect...",SwingConstants.CENTER);
+    JLabel introTextLabel = new JLabel("Väntar på att en annan spelare ansluter...",SwingConstants.CENTER);
 
     public IntroScreen() {
 
-        introBasePanel.add(introTitelLabel, BorderLayout.NORTH);
-        introBasePanel.add(introTextLabel, BorderLayout.CENTER);
-        //Nedan fungerar inte
-        introBasePanel.setBackground(Color.decode("#8D9EFF"));
+        introBasePanel.setLayout(new GridBagLayout());
+        introBasePanel.add(introTextLabel);
+        introTextLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+        introBasePanel.setBackground(Color.decode("#3B9AE1"));
         introBasePanel.setOpaque(true);//för att kunna se färgen(Mac)
     }
 

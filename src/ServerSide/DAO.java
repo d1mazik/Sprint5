@@ -63,7 +63,7 @@ public class DAO {
         this.animalQuestions.add(questionPackage);
 
         String[] animalAnswersThree = {"Babian", "Koala", "Panda", "Hyena"};
-        questionPackage = new QuestionPackage("Vilket djurs \"skratt\" är en reaktion till att den känner sig hotad?", animalAnswersThree, 3);
+        questionPackage = new QuestionPackage("Vilket djurs \"skratt\" är en reaktion\n till att den känner sig hotad?", animalAnswersThree, 3);
         this.animalQuestions.add(questionPackage);
 
         String[] animalAnswersFour = {"Babian", "Lejon", "Hund", "Zebra"};
@@ -110,7 +110,7 @@ public class DAO {
         this.sportsQuestions.add(questionPackage);
 
         String[] sportAnswersTwo = {"Herrman Maier", "Ingemar Stenmark", "Kjetil André Aarmodt", "Alberto Tomba"};
-        questionPackage = new QuestionPackage("Vad heter världen mest framgångsrike alpine skidåkare på herrsidan?", sportAnswersTwo, 2);
+        questionPackage = new QuestionPackage("Vad heter världen mest framgångsrike\n alpine skidåkare på herrsidan?", sportAnswersTwo, 2);
         this.sportsQuestions.add(questionPackage);
 
         //BIOLOGY
@@ -119,12 +119,12 @@ public class DAO {
         this.biologyQuestions.add(questionPackage);
 
         String[] biologyAnswersTwo = {"Katastrofblödning", "Puls", "Angning", "Blodtryck"};
-        questionPackage = new QuestionPackage("Vad är det första man kontrollerar enligt omhändertagandemetoden <C>ABCDE?", biologyAnswersTwo, 0);
+        questionPackage = new QuestionPackage("Vad är det första man kontrollerar enligt\n omhändertagandemetoden <C>ABCDE?", biologyAnswersTwo, 0);
         this.biologyQuestions.add(questionPackage);
 
         //COMPUTERGAMES
         String[] computerGamesAnswerOne = {"Counter Strike", "Call of Duty", "Super Mario", "FIFA"};
-        questionPackage = new QuestionPackage("I vilket online-spel hittar du banor som dust och assualt?", computerGamesAnswerOne,0 );
+        questionPackage = new QuestionPackage("I vilket online-spel hittar du banor som Dust och Assualt?", computerGamesAnswerOne,0 );
         this.computerGamesQuestions.add(questionPackage);
 
         String[] computerGamesAnswerTwo = {"Zelda", "Half-Life", "Far Cry 2", "Uncharted"};
@@ -132,7 +132,7 @@ public class DAO {
         this.computerGamesQuestions.add(questionPackage);
 
         String[] computerGamesAnswerThree = {"Janne", "Daisy", "Peach", "Henriette"};
-        questionPackage = new QuestionPackage("Vad heter prinsessan i det första Super Mario Bros-spelet till NES?", computerGamesAnswerThree,2 );
+        questionPackage = new QuestionPackage("Vad heter prinsessan i det första\n Super Mario Bros-spelet till NES?", computerGamesAnswerThree,2 );
         this.computerGamesQuestions.add(questionPackage);
 
         //TV-SERIES

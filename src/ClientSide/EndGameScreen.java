@@ -35,7 +35,7 @@ public class EndGameScreen {
         JLabel centerLeftLabel = new JLabel("Player One: " + playerOneScore);
         JLabel centerRightLabel = new JLabel("Player Two: " + playerTwoScore);
 
-        endOfGameBasePanel.setBackground(Color.decode("#8D9EFF"));
+        endOfGameBasePanel.setBackground(Color.decode("#3B9AE1"));
         endOfGameBasePanel.setOpaque(true);
 
         endOfGameBasePanel.add(northPanel);

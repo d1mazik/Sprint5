@@ -94,20 +94,20 @@ public class WaitScreen implements ActionListener {
         //rad 1
         waitScreenBasePanel.add(waitTextPanel);
         waitTextPanel.add(waitTextLabel, BorderLayout.CENTER);
-        waitTextPanel.setBackground(Color.decode("#8D9EFF"));
+        waitTextPanel.setBackground(Color.decode("#3B9AE1"));
 
         //rad 2
         waitScreenBasePanel.add(rowTwoBasePanel);
         rowTwoBasePanel.setLayout(new GridLayout(0, 3));
         rowTwoBasePanel.add(playerOnePanel);
-        playerOnePanel.setBackground(Color.decode("#8D9EFF"));
+        playerOnePanel.setBackground(Color.decode("#3B9AE1"));
         playerOnePanel.add(playerOneLabel);
         rowTwoBasePanel.add(totalScorePanel);
         totalScorePanel.add(totalScoreLabel);
-        totalScorePanel.setBackground(Color.decode("#8D9EFF"));
+        totalScorePanel.setBackground(Color.decode("#3B9AE1"));
         rowTwoBasePanel.add(playerTwoPanel);
         playerTwoPanel.add(playerTwoLabel);
-        playerTwoPanel.setBackground(Color.decode("#8D9EFF"));
+        playerTwoPanel.setBackground(Color.decode("#3B9AE1"));
 
         //Rad 3
         waitScreenBasePanel.add(rowThreeBasePanel);
@@ -115,18 +115,18 @@ public class WaitScreen implements ActionListener {
         rowThreeBasePanel.setLayout(new GridLayout(0, 3));
         rowThreeBasePanel.add(pointsPanelLeft); //, BorderLayout.WEST);
         pointsPanelLeft.add(pointsLabelLeft);
-        pointsPanelLeft.setBackground(Color.decode("#8D9EFF"));
+        pointsPanelLeft.setBackground(Color.decode("#3B9AE1"));
         rowThreeBasePanel.add(pointsPanelBlank);
-        pointsPanelBlank.setBackground(Color.decode("#8D9EFF"));
+        pointsPanelBlank.setBackground(Color.decode("#3B9AE1"));
         rowThreeBasePanel.add(pointsPanelRight);//, BorderLayout.EAST);
-        pointsPanelRight.setBackground(Color.decode("#8D9EFF"));
+        pointsPanelRight.setBackground(Color.decode("#3B9AE1"));
         pointsPanelRight.add(pointsLabelRight);
 
         totalScoreLabel.setText(gameResults.playerOneTotalScore()+"     -     "+gameResults.playerTwoTotalScore());
 
         for (int i = 0; i < gameResults.getCategoryNames().size(); i++) {
             JPanel row = new JPanel();
-            row.setBackground(Color.decode("#8D9EFF"));
+            row.setBackground(Color.decode("#3B9AE1"));
             waitScreenBasePanel.add(row);
 
             JLabel playerOneScore = new JLabel();
@@ -144,11 +144,11 @@ public class WaitScreen implements ActionListener {
             JLabel categoryName = new JLabel(gameResults.getCategoryNames().get(i));
 
             JPanel pointsPanelLeft = new JPanel();
-            pointsPanelLeft.setBackground(Color.decode("#8D9EFF"));
+            pointsPanelLeft.setBackground(Color.decode("#3B9AE1"));
             JPanel categoryPanel = new JPanel();
-            categoryPanel.setBackground(Color.decode("#8D9EFF"));
+            categoryPanel.setBackground(Color.decode("#3B9AE1"));
             JPanel pointsPanelRight = new JPanel();
-            pointsPanelRight.setBackground(Color.decode("#8D9EFF"));
+            pointsPanelRight.setBackground(Color.decode("#3B9AE1"));
 
 
 //TODO: Dra åt helvete
@@ -172,7 +172,7 @@ public class WaitScreen implements ActionListener {
         startNextRoundButton.addActionListener(this);
 
 
-        waitScreenBasePanel.setBackground(Color.decode("#8D9EFF"));
+        waitScreenBasePanel.setBackground(Color.decode("#3B9AE1"));
         waitScreenBasePanel.setOpaque(true);
 //        //Rad 4
 //        waitScreenBasePanel.add(rowFourBasePanel);

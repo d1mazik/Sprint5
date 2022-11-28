@@ -25,14 +25,15 @@ public class ChooseCategoryScreen implements ActionListener {
 
     //TODO: Implementera getCategoriesfunktion i QuestionsWithAnswers och ordna i DAO
     public ChooseCategoryScreen(Category[] categories) {
-        categoryScreen.setLayout(new GridLayout(5, 0));
+        categoryScreen.setLayout(new GridLayout(4, 0));
 
         categoryScreen.add(pickCategoryPanel);
         pickCategoryPanel.setLayout(new GridBagLayout());
+        pickCategoryPrompt.setFont(new Font("Serif", Font.PLAIN, 20));
         pickCategoryPanel.add(pickCategoryPrompt);
-        pickCategoryPanel.setBackground(Color.decode("#8D9EFF"));
+        pickCategoryPanel.setBackground(Color.decode("#EEF2E6"));
 
-        categoryScreen.setBackground(Color.decode("#8D9EFF"));
+        categoryScreen.setBackground(Color.decode("#3B9AE1"));
 //        categoryScreen.add(startRoundButton);
 //        startRoundButton.addActionListener(this);
 //        startRoundButton.setEnabled(false);
@@ -40,7 +41,8 @@ public class ChooseCategoryScreen implements ActionListener {
         for (JButton button : categoryButtons) {
             categoryScreen.add(button);
             button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            button.setBackground(Color.decode("#8D9EFF"));
+            button.setBackground(Color.decode("#3B9AE1"));
+            button.setFont(new Font("Serif", Font.PLAIN, 20));
             button.addActionListener(this);
             button.setOpaque(true); //för att kunna se färg(Mac)
         }
@@ -90,4 +92,6 @@ public class ChooseCategoryScreen implements ActionListener {
             throw new RuntimeException(ex);
         }
     }
+
+
 }

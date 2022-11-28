@@ -22,7 +22,7 @@ public class PlayScreen implements ActionListener {
     JPanel scoreCounterPanel = new JPanel();
     JPanel questionPanel = new JPanel();
 
-    JLabel questionLabel = new JLabel("Skiter björnen i skogen?");
+    JLabel questionLabel = new JLabel("Test");
     // countdown bar
     JPanel countDownPanel = new JPanel();
     JLabel countDown = new JLabel("...Placeholder countdown...");
@@ -55,6 +55,8 @@ public class PlayScreen implements ActionListener {
         northMainPanel.add(scoreCounterPanel);
         northMainPanel.add(questionPanel);
         questionPanel.add(questionLabel);
+        questionPanel.setBackground(Color.decode("#EEF2E6"));
+        questionLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         northMainPanel.add(countDownPanel);
         countDownPanel.add(countDown, BorderLayout.SOUTH);
         northMainPanel.add(nextQuestionButton);
@@ -64,7 +66,8 @@ public class PlayScreen implements ActionListener {
         for (JButton button : buttons) {
             southMainPanel.add(button);
             button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            button.setBackground(Color.decode("#8D9EFF"));
+            button.setBackground(Color.decode("#3B9AE1"));
+            button.setFont(new Font("Serif", Font.PLAIN, 20));
             button.setOpaque(true);//för att kunna se färgen(Mac)
             button.addActionListener(this);
         }
@@ -107,7 +110,7 @@ public class PlayScreen implements ActionListener {
 
         int selectedAnswerIndex = getSelectedAnswerIndex((JButton) e.getSource());
         System.out.println("Selected Answer: " + selectedAnswerIndex);
-        buttons.get(selectedAnswerIndex).setBackground(Color.red);
+        buttons.get(selectedAnswerIndex).setBackground(Color.decode("#EB1D36"));
         buttons.get(selectedAnswerIndex).setOpaque(true);//för att kunna se färger(Mac)
         nextQuestionButton.setVisible(true);
 
@@ -124,7 +127,7 @@ public class PlayScreen implements ActionListener {
 
     public void revealAnswer(int answerIndex) {
 
-        buttons.get(answerIndex).setBackground(Color.green);
+        buttons.get(answerIndex).setBackground(Color.decode("#ADE792"));
         buttons.get(answerIndex).setOpaque(true);//för att kunna se färgen(Mac)
     }
 }
