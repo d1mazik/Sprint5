@@ -15,11 +15,22 @@ public class DAO {
 
     List<QuestionPackage> foodQuestions = new ArrayList<>();
 
+    List<QuestionPackage> biologyQuestions = new ArrayList<>();
+
+    List<QuestionPackage> computerGamesQuestions = new ArrayList<>();
+
+    List<QuestionPackage> sportsQuestions = new ArrayList<>();
+
+    List<QuestionPackage> tvSeriesQuestions = new ArrayList<>();
+
     Category animalCategory;
     Category vehicleCategory;
     Category geographyCategory;
     Category foodCategory;
-
+    Category biologyCategory;
+    Category sportsCategory;
+    Category computerGames;
+    Category TVSeriesCategory;
 
     //TODO: Implementera
 
@@ -69,7 +80,7 @@ public class DAO {
         questionPackage = new QuestionPackage("Hur många län indelas Sverige i?", geographyAnswersThree, 2);
         this.geographyQuestions.add(questionPackage);
 
-        String[] geographyAnswersFour = {"Island","Schweiz","Norge","Ryssland"};
+        String[] geographyAnswersFour = {"Island", "Schweiz", "Norge", "Ryssland"};
         questionPackage = new QuestionPackage("Vilket är det nordligaste landet i Europa?", geographyAnswersFour, 2);
         this.geographyQuestions.add(questionPackage);
 
@@ -89,6 +100,47 @@ public class DAO {
         questionPackage = new QuestionPackage("vad är huvudingrediensen i boeuf bourguignon?", foodAnswersFour, 0);
         this.foodQuestions.add(questionPackage);
 
+        //SPORTS
+        String[] sportsAnswersOne = {"Black Army", "Änglarna", "Elfsborgs supporterunion", "Guliganerna"};
+        questionPackage = new QuestionPackage("Vad brukar fotbollsklubben IF Elfsborgs supportrar kallas?", sportsAnswersOne, 3);
+        this.sportsQuestions.add(questionPackage);
+
+        String[] sportAnswersTwo = {"Herrman Maier", "Ingemar Stenmark", "Kjetil André Aarmodt", "Alberto Tomba"};
+        questionPackage = new QuestionPackage("Vad heter världen mest framgångsrike alpine skidåkare på herrsidan?", sportAnswersTwo, 2);
+        this.sportsQuestions.add(questionPackage);
+
+        //BIOLOGY
+        String[] biologyAnswersOne = {"233", "202", "333", "642"};
+        questionPackage = new QuestionPackage("Uppskattningsvis hur många skelettmuskler finns i människokroppen?", biologyAnswersOne, 3);
+        this.biologyQuestions.add(questionPackage);
+
+        String[] biologyAnswersTwo = {"Katastrofblödning", "Puls", "Angning", "Blodtryck"};
+        questionPackage = new QuestionPackage("Vad är det första man kontrollerar enligt omhändertagandemetoden <C>ABCDE?", biologyAnswersTwo, 0);
+        this.biologyQuestions.add(questionPackage);
+
+        //COMPUTERGAMES
+        String[] computerGamesAnswerOne = {"Counter Strike", "Call of Duty", "Super Mario", "FIFA"};
+        questionPackage = new QuestionPackage("I vilket online-spel hittar du banor som dust och assualt?", computerGamesAnswerOne,0 );
+        this.computerGamesQuestions.add(questionPackage);
+
+        String[] computerGamesAnswerTwo = {"Zelda", "Half-Life", "Far Cry 2", "Uncharted"};
+        questionPackage = new QuestionPackage("I vilket spel, spelar du som karaktären Gordon Freeman?", computerGamesAnswerTwo,1 );
+        this.computerGamesQuestions.add(questionPackage);
+
+        String[] computerGamesAnswerThree = {"Janne", "Daisy", "Peach", "Henriette"};
+        questionPackage = new QuestionPackage("Vad heter prinsessan i det första Super Mario Bros-spelet till NES?", computerGamesAnswerThree,2 );
+        this.computerGamesQuestions.add(questionPackage);
+
+        //TV-SERIES
+        String[] tvSeriesAnswersOne = {"John Johnsson", "Peter Parker", "Kevin Garvey", "Jack Carver"}   ;
+        questionPackage = new QuestionPackage("Vem spelar huvudrollen i serien \"The Leftovers\"?", tvSeriesAnswersOne, 2);
+        this.tvSeriesQuestions.add(questionPackage);
+
+        String [] tvSeriesAnswersTwo = {"Stranger Things", "Game of Thrones", "Breaking Bad", "The Big Bang Theory"};
+        questionPackage = new QuestionPackage("Vilken är den mest sedda serien någonsin?", tvSeriesAnswersTwo, 1);
+        this.tvSeriesQuestions.add(questionPackage);
+
+        Collections.shuffle(vehicleQuestions);
         vehicleCategory = new Category(vehicleQuestions, "Fordon");
         categories.add(vehicleCategory);
 
@@ -100,6 +152,22 @@ public class DAO {
 
         foodCategory = new Category(foodQuestions, "Mat");
         categories.add(foodCategory);
+
+        Collections.shuffle(biologyQuestions);
+        biologyCategory = new Category(biologyQuestions, "Biologi");
+        categories.add(biologyCategory);
+
+        Collections.shuffle(sportsQuestions);
+        sportsCategory = new Category(sportsQuestions, "Sport");
+        categories.add(sportsCategory);
+
+        Collections.shuffle(computerGamesQuestions);
+        computerGames = new Category(computerGamesQuestions, "Datorspel");
+        categories.add(computerGames);
+
+        Collections.shuffle(tvSeriesQuestions);
+        TVSeriesCategory = new Category(tvSeriesQuestions, "TV-serier");
+        categories.add(TVSeriesCategory);
     }
 
     public DAO() {

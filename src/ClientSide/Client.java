@@ -1,5 +1,6 @@
 package ClientSide;
 
+import Resources.GameResults;
 import Resources.QuestionPackage;
 import ServerSide.Category;
 
@@ -54,8 +55,8 @@ public static ObjectOutputStream oos;
                     gui.setCurrentPanel(playScreen.getPlayScreen());
                 } else if (fromServer instanceof Integer correctAnswerIndex) {
                     playScreen.revealAnswer(correctAnswerIndex);
-                } else if(fromServer instanceof String string && string.equals("wait")) {
-                    gui.setCurrentPanel(new WaitScreen().getWaitScreen());
+                } else if(fromServer instanceof GameResults gameResults) {
+                    gui.setCurrentPanel(new WaitScreen(gameResults).getWaitScreen());
                 } else if (fromServer instanceof String string && string.equals("loadingQuestions")) {
                     System.out.println("Loading Questions");
                 } else if (fromServer instanceof int[] correctAnswersPerPlayer) {
