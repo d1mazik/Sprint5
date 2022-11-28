@@ -3,6 +3,7 @@ package ServerSide;
 import Resources.QuestionPackage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DAO {
@@ -78,7 +79,7 @@ public class DAO {
         questionPackage = new QuestionPackage("Var ligger Paris?", geographyAnswersTwo, 2);
         this.geographyQuestions.add(questionPackage);
 
-        String[] geographyAnswersThree = {"43,51,21,24"};
+        String[] geographyAnswersThree = {"43","51","21","24"};
         questionPackage = new QuestionPackage("Hur många län indelas Sverige i?", geographyAnswersThree, 2);
         this.geographyQuestions.add(questionPackage);
 
@@ -147,12 +148,15 @@ public class DAO {
         vehicleCategory = new Category(vehicleQuestions, "Fordon");
         categories.add(vehicleCategory);
 
+        Collections.shuffle(animalQuestions);
         animalCategory = new Category(animalQuestions, "Djur");
         categories.add(animalCategory);
 
+        Collections.shuffle(geographyQuestions);
         geographyCategory = new Category(geographyQuestions, "Geografi");
         categories.add(geographyCategory);
 
+        Collections.shuffle(foodQuestions);
         foodCategory = new Category(foodQuestions, "Mat");
         categories.add(foodCategory);
 

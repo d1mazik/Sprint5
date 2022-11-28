@@ -1,5 +1,7 @@
 package ServerSide;
 
+import Resources.GameResults;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -35,6 +37,7 @@ public class GameProtocol {
     int allowedRounds = p.getRounds();
 
     //TODO: lägg till under swap
+    GameResults gameResults = new GameResults();
     int player1RoundScore;
     int player1TotalScore;
 
@@ -49,6 +52,7 @@ public class GameProtocol {
     public void receive(Object fromUser) throws IOException {
         if (fromUser instanceof Category chosenCategory) {
             //RECEIVE CATEGORIES
+            database.deleteCategoryByName(chosenCategory.getName());
             this.currentCategory = chosenCategory;
             currentState = state.SEND_QUESTIONS;
         } else if (fromUser instanceof Integer selectedAnswer) {
@@ -63,13 +67,13 @@ public class GameProtocol {
     }
 
     public int[] getFinalScores(){
-        return new int[]{player1.correctAnswers, player2.correctAnswers};
+        return new int[]{gameResults.playerOneTotalScore(), gameResults.playerTwoTotalScore()};
     }
     private void validateAnswer(Integer selectedAnswer) throws IOException {
         Integer correctAnswerIndex =
                 currentCategory.getQuestionPackage().get(currentQuestionIndex).getIndexOfCorrectAnswer();
         if (correctAnswerIndex.equals(selectedAnswer)) {
-            currentPlayer.incrementCorrectAnswers();
+            currentPlayer.incrementCorrectAnswersThisRound();
         }
         currentQuestionIndex++;
         currentState = state.WAIT_FOR_NEXT_QUESTION;
@@ -108,9 +112,15 @@ public class GameProtocol {
         } else if (currentState == state.SWAP_PLAYER) {
             turnCounter++;
             System.out.println("Turn counter: " + turnCounter);
+            if (currentPlayer.equals(player1)) {
+                gameResults.addPlayerOneResult(currentCategory.getName(), player1.correctAnswersThisRound);
+            } else {
+                gameResults.addPlayerTwoResult(currentCategory.getName(), player2.correctAnswersThisRound);
+            }
+            //notCurrentPlayer.oos.writeObject(gameResults);
             if (turnCounter == 2) {
-                //TODO:  nedanstående fungerar inte. Återkoppla till detta senare i mån av tid
-//                database.removeUsedQuestionPackageFromCategory(currentCategory, questionsPerRound);
+                player1.resetCorrectAnswersThisRound();
+                player2.resetCorrectAnswersThisRound();
                 turnCounter = 0;
                 roundCounter++;
                 System.out.println("Round counter: " + roundCounter);
@@ -120,6 +130,7 @@ public class GameProtocol {
                     currentState = state.SEND_CATEGORIES;
                 }
             } else {
+                waitScreen();
                 swapPlayer();
                 currentState = state.SEND_QUESTIONS;
             }
@@ -141,11 +152,14 @@ public class GameProtocol {
 //    }
 
     private void swapPlayer() throws IOException {
-        currentPlayer.oos.writeObject("wait");
-
         ServerSidePlayer toBeCurrentPlayer = notCurrentPlayer;
         notCurrentPlayer = currentPlayer;
         currentPlayer = toBeCurrentPlayer;
+    }
+
+    private void waitScreen() throws IOException {
+        currentPlayer.oos.reset();
+        currentPlayer.oos.writeObject(gameResults);
     }
 
     private void sendQuestion() throws IOException {

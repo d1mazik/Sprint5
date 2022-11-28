@@ -10,11 +10,15 @@ public class ServerSidePlayer extends Thread{
     Socket socketToClient;
     ObjectOutputStream oos;
 
-    int correctAnswers;
+    int correctAnswersThisRound;
 
-    public void incrementCorrectAnswers() {
-        correctAnswers++;
-        System.out.println("Correct answers: " + correctAnswers);
+    public void resetCorrectAnswersThisRound() {
+        this.correctAnswersThisRound = 0;
+    }
+
+    public void incrementCorrectAnswersThisRound() {
+        correctAnswersThisRound++;
+        System.out.println("Correct answers: " + correctAnswersThisRound);
     }
 
     public ServerSidePlayer(Socket socketToClient, GameProtocol gameProtocol) {
