@@ -34,49 +34,8 @@ public class ResultScreen implements ActionListener {
     JPanel pointsPanelRight = new JPanel();
     JLabel pointsLabelLeft = new JLabel("Poäng");
     JLabel pointsLabelRight = new JLabel("Poäng");
-
-    //Rad 4 - round one
-    JPanel rowFourBasePanel = new JPanel();
-    JPanel pointspanelLeftRoundOne = new JPanel();
-    JLabel pointsLabelLeftRoundOne = new JLabel("-");
-    JPanel categoryPanelRoundOne = new JPanel();
-    //                                                    För test
-    JLabel categoryLabelRoundOne = new JLabel( "Round 1" + "\n" + "SPORT");
-    JPanel pointsPanelRightRoundOne = new JPanel();
-    JLabel pointsLabelRightRoundOne = new JLabel("-");
-
-    //Rad 5 - round two
-    JPanel rowFiveBasePanel = new JPanel();
-    JPanel pointspanelLeftRoundTwo = new JPanel();
-    JLabel pointsLabelLeftRoundTwo = new JLabel("-");
-    JPanel categoryPanelRoundTwo = new JPanel();
-    JLabel categoryLabelRoundTwo = new JLabel( "Round 2" + "\n" + category);
-    JPanel pointsPanelRightRoundTwo = new JPanel();
-    JLabel pointsLabelRightRoundTwo = new JLabel("-");
-
-    //Rad 6 - round three
-    JPanel rowSixBasePanel = new JPanel();
-    JPanel pointspanelLeftRoundThree = new JPanel();
-    JLabel pointsLabelLeftRoundThree = new JLabel("-");
-    JPanel categoryPanelRoundThree = new JPanel();
-    JLabel categoryLabelRoundThree = new JLabel( "Round 3" + "\n" + category);
-    JPanel pointsPanelRightRoundThree = new JPanel();
-    JLabel pointsLabelRightRoundThree = new JLabel("-");
-
-    //Rad 7 - round four
-    JPanel rowSevenBasePanel = new JPanel();
-    JPanel pointspanelLeftRoundFour = new JPanel();
-    JLabel pointsLabelLeftRoundFour = new JLabel("-");
-    JPanel categoryPanelRoundFour = new JPanel();
-    JLabel categoryLabelRoundFour = new JLabel( "Round 4" + "\n" + category);
-    JPanel pointsPanelRightRoundFour = new JPanel();
-    JLabel pointsLabelRightRoundFour = new JLabel("-");
-
     //Start next round button
     JButton startNextRoundButton = new JButton("Påbörja nästa runda!");
-
-
-
 
     public ResultScreen(GameResults gameResults) {
         waitScreenBasePanel.setLayout(new GridLayout(8, 0));
@@ -117,7 +76,7 @@ public class ResultScreen implements ActionListener {
         pointsPanelRight.setOpaque(true);
         pointsPanelRight.add(pointsLabelRight);
 
-        totalScoreLabel.setText(gameResults.playerOneTotalScore()+"     -     "+gameResults.playerTwoTotalScore());
+        totalScoreLabel.setText(gameResults.playerOneTotalScore() + "     -     " + gameResults.playerTwoTotalScore());
 
         for (int i = 0; i < gameResults.getCategoryNames().size(); i++) {
             JPanel row = new JPanel();
@@ -183,7 +142,6 @@ public class ResultScreen implements ActionListener {
         }
     }
 
-    
 
     public void enableStartNextRoundButton() {
         startNextRoundButton.setEnabled(true);
@@ -198,16 +156,10 @@ public class ResultScreen implements ActionListener {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            return;
         }
     }
 
     public JPanel getWaitScreen() {
         return waitScreenBasePanel;
     }
-
-    //För debugging
-//    public static void main(String[] args) {
-//        WaitScreen ws = new WaitScreen();
-//    }
 }

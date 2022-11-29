@@ -9,7 +9,7 @@ public class ReadProperties {
 
     Properties p;
 
-    public ReadProperties() throws IOException {
+    public ReadProperties() {
         p = new Properties();
 
         try {

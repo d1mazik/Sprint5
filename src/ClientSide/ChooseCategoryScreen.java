@@ -16,7 +16,6 @@ public class ChooseCategoryScreen implements ActionListener {
     JPanel pickCategoryPanel = new JPanel();
 
     JLabel pickCategoryPrompt = new JLabel("Välj kategori för nästa rond: ");
-//    JButton startRoundButton = new JButton("Påbörja runda");
     JButton categoryOne = new JButton("Category 1");
     JButton categoryTwo = new JButton("Category 2");
     JButton categoryThree = new JButton("Category 3");
@@ -35,9 +34,6 @@ public class ChooseCategoryScreen implements ActionListener {
 
         categoryScreen.setBackground(Color.decode("#3B9AE1"));
         categoryScreen.setOpaque(true);
-//        categoryScreen.add(startRoundButton);
-//        startRoundButton.addActionListener(this);
-//        startRoundButton.setEnabled(false);
 
         for (JButton button : categoryButtons) {
             categoryScreen.add(button);
@@ -64,17 +60,6 @@ public class ChooseCategoryScreen implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if (e.getSource().equals(startRoundButton)) {
-//            try {
-//                Client.oos.writeObject(new Response());
-//            } catch (IOException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//            return;
-//        }
-//
-//        startRoundButton.setEnabled(true);
-
         Category chosenCategory = null;
         JButton buttonSelected = (JButton) e.getSource();
         for (int i = 0; i < categoryButtons.size(); i++) {

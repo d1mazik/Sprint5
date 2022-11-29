@@ -178,48 +178,6 @@ public class DAO {
     public DAO() {
         this.generateQuestionList();
     }
-
-//    public List<QuestionsWithAnswers> getQuestionCategoryIdentifier(String identifier,List<QuestionsWithAnswers> list){
-//        if (identifier.equals(list))
-//    }
-
-
-    // Är tänkt att användas för poängräkning.
-    public boolean validateAnswer(int indexOfQuestion, int indexOfAnswer, String identifier) {
-        if (identifier.equals("vehicleQuestions")) {
-            return indexOfAnswer == vehicleQuestions.get(indexOfQuestion).getIndexOfCorrectAnswer();
-        }
-        return indexOfAnswer == animalQuestions.get(indexOfQuestion).getIndexOfCorrectAnswer();
-    }
-
-
-    // FIXME: 2022-11-21 KATEGORI HÅRDKODAT
-    public Object getQuestion(int index, String identifier) {
-        if (identifier.equals("vehicleQuestions")) {
-            return vehicleQuestions.get(index);
-        }
-        return animalQuestions.get(index);
-    }
-
-    public Category getPackage(int i) {
-        return categories.get(i);
-    }
-
-    //TODO: Metod ämnad att kunna ta bort frågepaket från ett pågående spel. Återkom till detta senare i mån av tid.
-
-//    public void removeUsedQuestionPackageFromCategory(Category currentCategory, int questionsPerRound) {
-//        for (Category category : categories) {
-//            if (category.getName().equals(currentCategory.getName())) {
-//                currentCategory = category;
-//            }
-//        }
-//
-//        for (int i = 0; i < questionsPerRound; i++) {
-//            currentCategory.getQuestionPackage().remove(0);
-//        }
-//    }
-
-
     public void deleteCategoryByName(String name) {
         categories.removeIf(category -> category.getName().equals(name));
     }

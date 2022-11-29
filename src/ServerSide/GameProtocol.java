@@ -36,15 +36,8 @@ public class GameProtocol {
     int allowedRounds = p.getRounds();
 
     GameResults gameResults = new GameResults();
-    int player1RoundScore;
-    int player1TotalScore;
-
-    int player2RoundScore;
-    int player2TotalScore;
     int turnCounter = 0;
-    int allowedNumberofCategories = 3;
-
-
+    int allowedNumberOfCategories = 3;
     int currentQuestionIndex = 0;
 
     public void receive(Object fromUser) throws IOException {
@@ -64,9 +57,6 @@ public class GameProtocol {
         }
     }
 
-    public int[] getFinalScores(){
-        return new int[]{gameResults.playerOneTotalScore(), gameResults.playerTwoTotalScore()};
-    }
     private void validateAnswer(Integer selectedAnswer) throws IOException {
         Integer correctAnswerIndex =
                 currentCategory.getQuestionPackage().get(currentQuestionIndex).getIndexOfCorrectAnswer();
@@ -78,12 +68,12 @@ public class GameProtocol {
         currentPlayer.oos.writeObject(correctAnswerIndex);
     }
 
-    public void setPlayer1(ServerSidePlayer player1) throws IOException {
+    public void setPlayer1(ServerSidePlayer player1) {
         this.player1 = player1;
         player1.start();
     }
 
-    public void setPlayer2(ServerSidePlayer player2) throws IOException {
+    public void setPlayer2(ServerSidePlayer player2) {
         this.player2 = player2;
         player2.start();
     }
@@ -150,16 +140,7 @@ public class GameProtocol {
 
     }
 
-
-
-
-//    private void removeUsedQuestionsFromGame() {
-//        if (questionsPerRound > 0) {
-//            currentCategory.getQuestionPackage().subList(0, questionsPerRound).clear();
-//        }
-//    }
-
-    private void swapPlayer() throws IOException {
+    private void swapPlayer() {
         ServerSidePlayer toBeCurrentPlayer = notCurrentPlayer;
         notCurrentPlayer = currentPlayer;
         currentPlayer = toBeCurrentPlayer;
@@ -201,13 +182,12 @@ public class GameProtocol {
         List<Category> categoryList = database.categories;
         Collections.shuffle(categoryList);
 
-        Category[] randomCategories = new Category[allowedNumberofCategories];
-        for (int i = 0; i < allowedNumberofCategories; i++) {
+        Category[] randomCategories = new Category[allowedNumberOfCategories];
+        for (int i = 0; i < allowedNumberOfCategories; i++) {
             randomCategories[i] = categoryList.get(i);
         }
 
         currentPlayer.oos.writeObject(randomCategories);
         notCurrentPlayer.oos.writeObject(gameResults);
     }
-
 }

@@ -15,20 +15,11 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<QuestionPackage> getQuestionPackage() {
         return questionPackage;
-    }
-
-    public void setQuestionPackage(List<QuestionPackage> questionPackage) {
-        this.questionPackage = questionPackage;
     }
 }
