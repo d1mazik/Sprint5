@@ -96,7 +96,7 @@ public class ResultScreen implements ActionListener {
             } catch (IndexOutOfBoundsException e) {
                 playerOneScore.setText("-");
             }
-            JLabel categoryName = new JLabel("Runda: " + roundCounter + " " + gameResults.getCategoryNames().get(i));
+            JLabel categoryName = new JLabel("Runda " + roundCounter + ": " + gameResults.getCategoryNames().get(i));
             roundCounter++;
 
             JPanel pointsPanelLeft = new JPanel();
