@@ -37,7 +37,6 @@ public class GameProtocol {
     //TODO: Bind till properties.
     int allowedRounds = p.getRounds();
 
-    //TODO: lägg till under swap
     GameResults gameResults = new GameResults();
     int player1RoundScore;
     int player1TotalScore;

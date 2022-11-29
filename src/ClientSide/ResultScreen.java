@@ -10,18 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class ResultScreen implements ActionListener {
-    String category;
-    int points;
-
-
-    int playerOneTotalScore;
-    int playerTwoTotalScore;
-
     int roundCounter = 1;
-
-    /*
-    * TODO: Hårdkoda in backgroundcolor på varenda jävla panel
-    * */
 
     //INTROSCREEN
     JPanel waitScreenBasePanel = new JPanel();
@@ -204,7 +193,6 @@ public class ResultScreen implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(startNextRoundButton)) {
-            //Lägg till funktionalitet för att den INTE ska kunna gå att trycka på innan man har svarat på frågan.
             try {
                 Client.oos.writeObject(new Response());
             } catch (IOException ex) {

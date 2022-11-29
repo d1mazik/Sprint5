@@ -37,11 +37,9 @@ public class PlayScreen implements ActionListener {
 
     List<JButton> buttons = Arrays.asList(answerButtonOne, answerButtonTwo, answerButtonThree, answerButtonFour);
 
-    // Eftersom att vi lägger allting i panels kan vi returnera hela paneler tillbaka till Client.
     public JPanel getPlayScreen() {
         return playScreen;
     }
-
 
     public PlayScreen(QuestionPackage question) {
         playScreen.setLayout(new GridLayout(2, 0));
@@ -100,7 +98,6 @@ public class PlayScreen implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(nextQuestionButton)) {
-            //Lägg till funktionalitet för att den INTE ska kunna gå att trycka på innan man har svarat på frågan.
             try {
                 Client.oos.writeObject(new Response());
             } catch (IOException ex) {

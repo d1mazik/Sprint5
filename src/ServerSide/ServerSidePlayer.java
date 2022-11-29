@@ -34,7 +34,6 @@ public class ServerSidePlayer extends Thread{
         {
             this.oos = oos;
             Object fromUser;
-            Object fromServer;
 
             gameProtocol.receive(new Response());
 

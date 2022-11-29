@@ -33,8 +33,6 @@ public class DAO {
     Category computerGames;
     Category TVSeriesCategory;
 
-    //TODO: Implementera
-
     public void generateQuestionList() {
         //VECHICLE
         String[] vehicleAnswersOne = {"1", "2", "3", "4"};
@@ -76,7 +74,7 @@ public class DAO {
         this.geographyQuestions.add(questionPackage);
 
         String[] geographyAnswersTwo = {"Europa", "NordAmerika", "Sydamerika", "Afrika"};
-        questionPackage = new QuestionPackage("Var ligger Paris?", geographyAnswersTwo, 2);
+        questionPackage = new QuestionPackage("Var ligger Paris?", geographyAnswersTwo, 0);
         this.geographyQuestions.add(questionPackage);
 
         String[] geographyAnswersThree = {"43","51","21","24"};
