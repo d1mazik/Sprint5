@@ -31,7 +31,7 @@ public class ReadProperties {
     }
 
     public int getQuestionsInRound() {
-        String in = p.getProperty("numberOfQuestion", "2");
+        String in = p.getProperty("numberOfQuestions", "2");
         questionsInRound = Integer.parseInt(in);
         return questionsInRound;
     }

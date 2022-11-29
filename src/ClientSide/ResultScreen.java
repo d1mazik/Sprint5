@@ -170,7 +170,6 @@ public class ResultScreen implements ActionListener {
             row.add(pointsPanelRight);
             pointsPanelRight.add(playerTwoScore);
 
-
         }
 
         waitScreenBasePanel.add(startNextRoundButton);

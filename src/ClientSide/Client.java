@@ -23,6 +23,7 @@ public class Client extends JFrame {
     ClientGUI gui = new ClientGUI();
     IntroScreen introScreen;
     PlayScreen playScreen;
+    ResultScreen waitScreen;
 public static ObjectOutputStream oos;
 
     public Client() {
@@ -56,7 +57,11 @@ public static ObjectOutputStream oos;
                 } else if (fromServer instanceof Integer correctAnswerIndex) {
                     playScreen.revealAnswer(correctAnswerIndex);
                 } else if(fromServer instanceof GameResults gameResults) {
-                    gui.setCurrentPanel(new WaitScreen(gameResults).getWaitScreen());
+                    System.out.println("Wait Screen");
+                    waitScreen = new ResultScreen(gameResults);
+                    gui.setCurrentPanel(waitScreen.getWaitScreen());
+                } else if (fromServer instanceof String string && string.equals("enableButton")) {
+                    waitScreen.enableStartNextRoundButton();
                 } else if (fromServer instanceof String string && string.equals("loadingQuestions")) {
                     System.out.println("Loading Questions");
                 } else if (fromServer instanceof int[] correctAnswersPerPlayer) {

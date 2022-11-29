@@ -10,6 +10,20 @@ public class GameResults implements Serializable {
     List<Integer> playerOneScores = new ArrayList<>();
     List<Integer> playerTwoScores = new ArrayList<>();
     List<String> categoryNames = new ArrayList<>();
+    boolean gameOver = false;
+
+    public GameResults() {}
+    public GameResults(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public boolean getGameOver() {
+        return this.gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
 
     private int getCategoryIndex(String categoryName) {
         System.out.println("Categories" + categoryNames.toString());

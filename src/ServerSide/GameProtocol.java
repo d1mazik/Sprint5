@@ -144,8 +144,11 @@ public class GameProtocol {
             }
             processState();
         } else if (currentState == state.END_GAME){
-            player1.oos.writeObject(getFinalScores());
-            player2.oos.writeObject(getFinalScores());
+            gameResults.setGameOver(true);
+            player1.oos.reset();
+            player2.oos.reset();
+            player1.oos.writeObject(gameResults);
+            player2.oos.writeObject(gameResults);
         }
 
     }
