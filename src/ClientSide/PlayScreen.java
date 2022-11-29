@@ -56,6 +56,7 @@ public class PlayScreen implements ActionListener {
         northMainPanel.add(questionPanel);
         questionPanel.add(questionLabel);
         questionPanel.setBackground(Color.decode("#EEF2E6"));
+        questionPanel.setOpaque(true);
         questionLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         northMainPanel.add(countDownPanel);
         countDownPanel.add(countDown, BorderLayout.SOUTH);

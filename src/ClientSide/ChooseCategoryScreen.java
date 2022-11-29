@@ -31,8 +31,10 @@ public class ChooseCategoryScreen implements ActionListener {
         pickCategoryPrompt.setFont(new Font("Serif", Font.PLAIN, 20));
         pickCategoryPanel.add(pickCategoryPrompt);
         pickCategoryPanel.setBackground(Color.decode("#EEF2E6"));
+        pickCategoryPanel.setOpaque(true);
 
         categoryScreen.setBackground(Color.decode("#3B9AE1"));
+        categoryScreen.setOpaque(true);
 //        categoryScreen.add(startRoundButton);
 //        startRoundButton.addActionListener(this);
 //        startRoundButton.setEnabled(false);
