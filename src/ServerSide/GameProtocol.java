@@ -30,11 +30,9 @@ public class GameProtocol {
     ServerSidePlayer currentPlayer, notCurrentPlayer;
     state currentState = state.WAITING_FOR_PLAYERS;
     Category currentCategory;
-
-    //TODO: Bind till properties.
+    
     int questionsPerRound = p.getQuestionsInRound();
     int roundCounter = 0;
-    //TODO: Bind till properties.
     int allowedRounds = p.getRounds();
 
     GameResults gameResults = new GameResults();

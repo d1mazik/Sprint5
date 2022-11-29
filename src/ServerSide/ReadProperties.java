@@ -1,14 +1,12 @@
 package ServerSide;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.FileInputStream;;
 import java.util.Properties;
 
 public class ReadProperties {
     int rounds;
     int questionsInRound;
 
-    int timePerQuestions;
     Properties p;
 
     public ReadProperties() throws IOException {
@@ -19,9 +17,6 @@ public class ReadProperties {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        // questionsInRound = Integer.parseInt(p.getProperty("numberOfRounds", String.valueOf(2)));
-
     }
 
     public int getRounds() {
