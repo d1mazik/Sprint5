@@ -23,7 +23,6 @@ public class ChooseCategoryScreen implements ActionListener {
     List<JButton> categoryButtons = Arrays.asList(categoryOne, categoryTwo, categoryThree);
     Category[] categories;
 
-    //TODO: Implementera getCategoriesfunktion i QuestionsWithAnswers och ordna i DAO
     public ChooseCategoryScreen(Category[] categories) {
         categoryScreen.setLayout(new GridLayout(4, 0));
 
