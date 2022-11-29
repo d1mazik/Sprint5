@@ -20,7 +20,7 @@ public class ReadProperties {
             e.printStackTrace();
         }
 
-        questionsInRound = Integer.parseInt(p.getProperty("numberOfRounds", String.valueOf(2)));
+        // questionsInRound = Integer.parseInt(p.getProperty("numberOfRounds", String.valueOf(2)));
 
     }
 

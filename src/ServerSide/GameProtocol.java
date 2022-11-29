@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GameProtocol {
 
-    public GameProtocol()throws IOException{}
+    public GameProtocol() throws IOException{}
 
     private enum state {
         WAITING_FOR_PLAYERS,
@@ -18,6 +18,7 @@ public class GameProtocol {
         WAIT_FOR_NEXT_QUESTION,
         RECEIVE_ANSWERS,
         SWAP_PLAYER,
+        BETWEEN_ROUNDS,
         WAIT_FOR_OPPONENT,
         END_GAME,
     }
@@ -61,7 +62,7 @@ public class GameProtocol {
 
         try {
             processState();
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -90,7 +91,7 @@ public class GameProtocol {
         player2.start();
     }
 
-    public void processState() throws IOException, InterruptedException {
+    public void processState() throws IOException {
         if (currentState == state.WAITING_FOR_PLAYERS) {
             waitForPlayers();
             //waitForPlayers();
@@ -109,7 +110,14 @@ public class GameProtocol {
             } else {
                 currentState = state.SEND_QUESTIONS;
             }
-        } else if (currentState == state.SWAP_PLAYER) {
+        } else if (currentState == state.BETWEEN_ROUNDS) {
+            waitScreen();
+            notCurrentPlayer.oos.reset();
+            notCurrentPlayer.oos.writeObject(gameResults);
+            currentPlayer.oos.writeObject("enableButton");
+            currentState = state.SEND_CATEGORIES;
+        }
+        else if (currentState == state.SWAP_PLAYER) {
             turnCounter++;
             System.out.println("Turn counter: " + turnCounter);
             if (currentPlayer.equals(player1)) {
@@ -117,8 +125,8 @@ public class GameProtocol {
             } else {
                 gameResults.addPlayerTwoResult(currentCategory.getName(), player2.correctAnswersThisRound);
             }
-            //notCurrentPlayer.oos.writeObject(gameResults);
-            if (turnCounter == 2) {
+            notCurrentPlayer.oos.writeObject(gameResults);
+            if (turnCounter == questionsPerRound) {
                 player1.resetCorrectAnswersThisRound();
                 player2.resetCorrectAnswersThisRound();
                 turnCounter = 0;
@@ -127,7 +135,7 @@ public class GameProtocol {
                 if (roundCounter == allowedRounds) {
                     currentState = state.END_GAME;
                 } else {
-                    currentState = state.SEND_CATEGORIES;
+                    currentState = state.BETWEEN_ROUNDS;
                 }
             } else {
                 waitScreen();
@@ -167,7 +175,7 @@ public class GameProtocol {
         currentPlayer.oos.writeObject(currentCategory.getQuestionPackage().get(currentQuestionIndex));
     }
 
-    private void waitForPlayers() throws IOException, InterruptedException {
+    private void waitForPlayers() throws IOException {
         System.out.println("Entered waitForPlayers");
         if (player1 == null) {
             System.out.println("Player one is null");
@@ -199,7 +207,7 @@ public class GameProtocol {
         }
 
         currentPlayer.oos.writeObject(randomCategories);
-        notCurrentPlayer.oos.writeObject("wait");
+        notCurrentPlayer.oos.writeObject(gameResults);
     }
 
 }
