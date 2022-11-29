@@ -35,15 +35,15 @@ public class DAO {
 
     public void generateQuestionList() {
         //VECHICLE
-        String[] vehicleAnswersOne = {"1", "2", "3", "4"};
-        QuestionPackage questionPackage = new QuestionPackage("Hur många däck brukar en bil ha?", vehicleAnswersOne, 3);
+        String[] vehicleAnswersOne = {"1002", "1774", "997", "1423"};
+        QuestionPackage questionPackage = new QuestionPackage("Vad är den genomsnittliga vikten för en personbil i Sverige?", vehicleAnswersOne, 3);
         this.vehicleQuestions.add(questionPackage);
 
         String[] vehicleAnswersTwo = {"Datormöss", "Flygplan", "Torktumlare", "Godis"};
         questionPackage = new QuestionPackage("Vad tillverkar Airbus?", vehicleAnswersTwo, 1);
         this.vehicleQuestions.add(questionPackage);
 
-        String[] vehicleAnswersThree = {"Kattsand", "Flygplan", "Granatgevär", "Simulatorsystem"};
+        String[] vehicleAnswersThree = {"Grafikkort", "Flygplan", "Granatgevär", "Simulatorsystem"};
         questionPackage = new QuestionPackage("Vilket av följande tillverkar INTE Saab?", vehicleAnswersThree, 0);
         this.vehicleQuestions.add(questionPackage);
 
@@ -52,8 +52,8 @@ public class DAO {
         this.vehicleQuestions.add(questionPackage);
 
         //ANIMAL
-        String[] animalAnswersOne = {"Bondkatt", "Norsk skogskatt", "Råttor", "Siamesiska kattråttor"};
-        questionPackage = new QuestionPackage("Vilken är den vanligaste kattrasen?", animalAnswersOne, 0);
+        String[] animalAnswersOne = {"Bondkatt", "Norsk skogskatt", "Burma", "Bengal"};
+        questionPackage = new QuestionPackage("Vilken är den vanligaste kattrasen i Sverige?", animalAnswersOne, 0);
         this.animalQuestions.add(questionPackage);
 
         String[] animalAnswersTwo = {"quack quack", "muuuuu", "voff voff", "vrooooom"};
@@ -122,7 +122,7 @@ public class DAO {
 
         //COMPUTERGAMES
         String[] computerGamesAnswerOne = {"Counter Strike", "Call of Duty", "Super Mario", "FIFA"};
-        questionPackage = new QuestionPackage("I vilket online-spel hittar du banor som Dust och Assualt?", computerGamesAnswerOne,0 );
+        questionPackage = new QuestionPackage("I vilket online-spel hittar du banor som Dust och Assault?", computerGamesAnswerOne,0 );
         this.computerGamesQuestions.add(questionPackage);
 
         String[] computerGamesAnswerTwo = {"Zelda", "Half-Life", "Far Cry 2", "Uncharted"};
