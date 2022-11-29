@@ -9,13 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class WaitScreen implements ActionListener {
+public class ResultScreen implements ActionListener {
     String category;
     int points;
 
 
     int playerOneTotalScore;
     int playerTwoTotalScore;
+
+    int roundCounter = 1;
 
     /*
     * TODO: Hårdkoda in backgroundcolor på varenda jävla panel
@@ -25,8 +27,7 @@ public class WaitScreen implements ActionListener {
     JPanel waitScreenBasePanel = new JPanel();
 
     //Rad 1
-    JPanel waitTextPanel = new JPanel();
-    JLabel waitTextLabel = new JLabel("Waiting for the other players turn to end...", SwingConstants.CENTER);
+    JPanel winnerTextPanel = new JPanel();
 
     //Rad 2
     JPanel rowTwoBasePanel = new JPanel();
@@ -88,38 +89,43 @@ public class WaitScreen implements ActionListener {
 
 
 
-    public WaitScreen(GameResults gameResults) {
+    public ResultScreen(GameResults gameResults) {
         waitScreenBasePanel.setLayout(new GridLayout(8, 0));
 
         //rad 1
-        waitScreenBasePanel.add(waitTextPanel);
-        waitTextPanel.add(waitTextLabel, BorderLayout.CENTER);
-        waitTextPanel.setBackground(Color.decode("#3B9AE1"));
+        waitScreenBasePanel.add(winnerTextPanel);
+        winnerTextPanel.setBackground(Color.decode("#3B9AE1"));
+        winnerTextPanel.setOpaque(true);
 
         //rad 2
         waitScreenBasePanel.add(rowTwoBasePanel);
         rowTwoBasePanel.setLayout(new GridLayout(0, 3));
         rowTwoBasePanel.add(playerOnePanel);
         playerOnePanel.setBackground(Color.decode("#3B9AE1"));
+        playerOnePanel.setOpaque(true);
         playerOnePanel.add(playerOneLabel);
         rowTwoBasePanel.add(totalScorePanel);
         totalScorePanel.add(totalScoreLabel);
         totalScorePanel.setBackground(Color.decode("#3B9AE1"));
+        totalScorePanel.setOpaque(true);
         rowTwoBasePanel.add(playerTwoPanel);
         playerTwoPanel.add(playerTwoLabel);
         playerTwoPanel.setBackground(Color.decode("#3B9AE1"));
+        playerTwoPanel.setOpaque(true);
 
         //Rad 3
         waitScreenBasePanel.add(rowThreeBasePanel);
-        //om texten inte hamnar åt sidorna, testa att sätta tre cols istället.
         rowThreeBasePanel.setLayout(new GridLayout(0, 3));
-        rowThreeBasePanel.add(pointsPanelLeft); //, BorderLayout.WEST);
+        rowThreeBasePanel.add(pointsPanelLeft);
         pointsPanelLeft.add(pointsLabelLeft);
         pointsPanelLeft.setBackground(Color.decode("#3B9AE1"));
+        pointsPanelLeft.setOpaque(true);
         rowThreeBasePanel.add(pointsPanelBlank);
         pointsPanelBlank.setBackground(Color.decode("#3B9AE1"));
-        rowThreeBasePanel.add(pointsPanelRight);//, BorderLayout.EAST);
+        pointsPanelBlank.setOpaque(true);
+        rowThreeBasePanel.add(pointsPanelRight);
         pointsPanelRight.setBackground(Color.decode("#3B9AE1"));
+        pointsPanelRight.setOpaque(true);
         pointsPanelRight.add(pointsLabelRight);
 
         totalScoreLabel.setText(gameResults.playerOneTotalScore()+"     -     "+gameResults.playerTwoTotalScore());
@@ -128,6 +134,7 @@ public class WaitScreen implements ActionListener {
             JPanel row = new JPanel();
             row.setBackground(Color.decode("#3B9AE1"));
             waitScreenBasePanel.add(row);
+            waitScreenBasePanel.setOpaque(true);
 
             JLabel playerOneScore = new JLabel();
             JLabel playerTwoScore = new JLabel();
@@ -141,20 +148,19 @@ public class WaitScreen implements ActionListener {
             } catch (IndexOutOfBoundsException e) {
                 playerOneScore.setText("-");
             }
-            JLabel categoryName = new JLabel(gameResults.getCategoryNames().get(i));
+            JLabel categoryName = new JLabel("Runda: " + roundCounter + " " + gameResults.getCategoryNames().get(i));
+            roundCounter++;
 
             JPanel pointsPanelLeft = new JPanel();
             pointsPanelLeft.setBackground(Color.decode("#3B9AE1"));
+            pointsPanelLeft.setOpaque(true);
             JPanel categoryPanel = new JPanel();
             categoryPanel.setBackground(Color.decode("#3B9AE1"));
+            categoryPanel.setOpaque(true);
             JPanel pointsPanelRight = new JPanel();
             pointsPanelRight.setBackground(Color.decode("#3B9AE1"));
+            pointsPanelRight.setOpaque(true);
 
-
-//TODO: Dra åt helvete
-//            for(Component panel : row.getComponents()) {
-//                panel.setBackground(Color.decode("#ADE792"));
-//            }
 
             row.setLayout(new GridLayout(0, 3));
             row.add(pointsPanelLeft);
@@ -169,61 +175,31 @@ public class WaitScreen implements ActionListener {
 
         waitScreenBasePanel.add(startNextRoundButton);
         startNextRoundButton.setBackground(Color.decode("#ADE792"));
+        startNextRoundButton.setOpaque(true);
         startNextRoundButton.addActionListener(this);
+        startNextRoundButton.setVisible(false);
 
 
         waitScreenBasePanel.setBackground(Color.decode("#3B9AE1"));
         waitScreenBasePanel.setOpaque(true);
-//        //Rad 4
-//        waitScreenBasePanel.add(rowFourBasePanel);
-//        rowFourBasePanel.setBackground(Color.decode("#8D9EFF"));
-//        rowFourBasePanel.setLayout(new GridLayout(0, 3));
-//        rowFourBasePanel.add(pointspanelLeftRoundOne);
-//        pointspanelLeftRoundOne.add(pointsLabelLeftRoundOne);
-//        rowFourBasePanel.add(categoryPanelRoundOne);
-//        categoryPanelRoundOne.add(categoryLabelRoundOne);
-//        rowFourBasePanel.add(pointsPanelRightRoundOne);
-//        pointsPanelRightRoundOne.add(pointsLabelRightRoundOne);
-//
-//        //Rad 5
-//        waitScreenBasePanel.add(rowFiveBasePanel);
-//        rowFiveBasePanel.setBackground(Color.decode("#8D9EFF"));
-//        rowFiveBasePanel.setLayout(new GridLayout(0, 3));
-//        rowFiveBasePanel.add(pointspanelLeftRoundTwo);
-//        pointspanelLeftRoundTwo.add(pointsLabelLeftRoundTwo);
-//        rowFiveBasePanel.add(categoryPanelRoundTwo);
-//        categoryPanelRoundTwo.add(categoryLabelRoundTwo);
-//        rowFiveBasePanel.add(pointsPanelRightRoundTwo);
-//        pointsPanelRightRoundTwo.add(pointsLabelRightRoundTwo);
-//
-//        //Rad 6
-//        waitScreenBasePanel.add(rowSixBasePanel);
-//        rowSixBasePanel.setBackground(Color.decode("#8D9EFF"));
-//        rowSixBasePanel.setLayout(new GridLayout(0, 3));
-//        rowSixBasePanel.add(pointspanelLeftRoundThree);
-//        pointspanelLeftRoundThree.add(pointsLabelLeftRoundThree);
-//        rowSixBasePanel.add(categoryPanelRoundThree);
-//        categoryPanelRoundThree.add(categoryLabelRoundThree);
-//        rowSixBasePanel.add(pointsPanelRightRoundThree);
-//        pointsPanelRightRoundThree.add(pointsLabelRightRoundThree);
-//
-//        //Rad 7
-//        waitScreenBasePanel.add(rowSevenBasePanel);
-//        rowSevenBasePanel.setBackground(Color.decode("#8D9EFF"));
-//        rowSevenBasePanel.setLayout(new GridLayout(0, 3));
-//        rowSevenBasePanel.add(pointspanelLeftRoundFour);
-//        pointspanelLeftRoundFour.add(pointsLabelLeftRoundFour);
-//        rowSevenBasePanel.add(categoryPanelRoundFour);
-//        categoryPanelRoundFour.add(categoryLabelRoundFour);
-//        rowSevenBasePanel.add(pointsPanelRightRoundFour);
-//        pointsPanelRightRoundFour.add(pointsLabelRightRoundFour);
 
 
+        if (gameResults.getGameOver()) {
+            String winner = "Oavgjort!";
+            if (gameResults.playerOneTotalScore() > gameResults.playerTwoTotalScore()) {
+                winner = "Spelare 1 vann!";
+            } else if (gameResults.playerTwoTotalScore() > gameResults.playerOneTotalScore()) {
+                winner = "Spelare 2 vann!";
+            }
+            JOptionPane.showMessageDialog(null, winner);
+        }
+    }
 
+    
 
-        //För debugging
-//        ClientGUI gui = new ClientGUI();
-//        gui.setCurrentPanel(waitScreenBasePanel);
+    public void enableStartNextRoundButton() {
+        startNextRoundButton.setEnabled(true);
+        startNextRoundButton.setVisible(true);
     }
 
     @Override

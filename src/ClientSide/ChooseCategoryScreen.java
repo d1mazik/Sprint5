@@ -49,8 +49,6 @@ public class ChooseCategoryScreen implements ActionListener {
         this.categories = categories;
         loadCategories(categories);
     }
-
-    // Eftersom att vi lägger allting i panels kan vi returnera hela paneler tillbaka till Client.
     public JPanel getCategoryScreen() {
         return categoryScreen;
     }
@@ -91,6 +89,5 @@ public class ChooseCategoryScreen implements ActionListener {
             throw new RuntimeException(ex);
         }
     }
-
 
 }
