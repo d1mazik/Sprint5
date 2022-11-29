@@ -45,7 +45,7 @@ public class ChooseCategoryScreen implements ActionListener {
             button.setBackground(Color.decode("#3B9AE1"));
             button.setFont(new Font("Serif", Font.PLAIN, 20));
             button.addActionListener(this);
-            button.setOpaque(true); //för att kunna se färg(Mac)
+            button.setOpaque(true);
         }
 
         this.categories = categories;
@@ -81,7 +81,7 @@ public class ChooseCategoryScreen implements ActionListener {
             if (buttonSelected.getText().equals(categories[i].getName())) {
                 chosenCategory = categories[i];
                 buttonSelected.setBackground(Color.blue);
-                buttonSelected.setOpaque(true); // för att kunna se färgen(Mac)
+                buttonSelected.setOpaque(true);
             }
             categoryButtons.get(i).setEnabled(false);
         }
